@@ -10,8 +10,8 @@ export const theme = {
     neutral700: "#322D37",
   },
   fonts: {
-    regular: "Poppins_400Regular",
-    medium: "Poppins_500Medium",
-    bold: "Poppins_700Bold",
+    regular: "Roboto_400Regular",
+    medium: "Roboto_500Medium",
+    bold: "Roboto_700Bold",
   },
 };

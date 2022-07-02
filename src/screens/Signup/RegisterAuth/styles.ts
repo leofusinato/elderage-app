@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     fontFamily: theme.fonts.regular,
     fontSize: 24,
     color: theme.colors.neutral700,
-    marginTop: 100,
+    marginTop: 60,
     marginBottom: 32,
   },
   signupText: {

@@ -6,12 +6,12 @@ import {
 } from '@react-navigation/native';
 
 import AppLoading from 'expo-app-loading';
-import { useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_700Bold } from '@expo-google-fonts/poppins';
+import { useFonts, Roboto_400Regular, Roboto_500Medium, Roboto_700Bold } from '@expo-google-fonts/roboto';
 import AuthRoutes from './src/routes/auth.routes';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
-    Poppins_400Regular, Poppins_500Medium, Poppins_700Bold,
+    Roboto_400Regular, Roboto_500Medium, Roboto_700Bold,
   });
 
   if (!fontsLoaded) {

@@ -11,10 +11,16 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 6,
   },
+  checkedContainer: {
+    backgroundColor: "#EBF9F7",
+  },
   description: {
     fontFamily: theme.fonts.regular,
     fontSize: 12,
     color: theme.colors.neutral300,
     marginLeft: 10,
+  },
+  checkedDescription: {
+    color: theme.colors.success,
   },
 });

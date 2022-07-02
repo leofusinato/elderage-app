@@ -1,5 +1,5 @@
-import React from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import React, { useMemo, useState } from 'react';
+import { Keyboard, KeyboardAvoidingView, ScrollView, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { useNavigation } from '@react-navigation/native';
@@ -14,9 +14,19 @@ import { PasswordValidator } from './components/PasswordValidator';
 
 export function RegisterAuth() {
   const navigation = useNavigation<NativeStackNavigationProp<AppStackParamList, 'RegisterAuth'>>();
+  const [password, setPassword] = useState('');
+
+  const hasEightCharacters = useMemo(() => {
+    return password.length >= 8;
+  }, [password])
+
+  const hasNumber = useMemo(() => {
+    const regex = /[0-9]/;
+    return regex.test(password);
+  }, [password])
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.main}>
         <View style={styles.row}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -25,19 +35,18 @@ export function RegisterAuth() {
           <Text style={styles.signupText}>Cadastre-se aqui</Text>
           <MaterialIcons name="keyboard-arrow-left" size={24} color={theme.colors.white} />
         </View>
+        <KeyboardAvoidingView behavior={'height'} style={{ flex: 1, width: '100%', alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={styles.almost}>Quase lá...</Text>
+            <AuthInput placeholder='Nos informe o seu e-mail' leftIcon='user' keyboardType='email-address' />
+            <AuthInput placeholder='Crie uma senha' leftIcon='lock' isPassword value={password} onChangeText={(text) => setPassword(text)}/>
 
-        <Text style={styles.almost}>Quase lá...</Text>
+            <PasswordValidator description='Necessário 8 dígitos' checked={hasEightCharacters} />
+            <PasswordValidator description='Ao menos 1 número' checked={hasNumber} />
 
-        <AuthInput placeholder='Nos informe o seu e-mail' leftIcon='user' keyboardType='email-address'/>
-        <AuthInput placeholder='Crie uma senha' leftIcon='lock' isPassword />
-
-        <PasswordValidator description='Necessário 8 dígitos' />
-        <PasswordValidator description='Ao menos 1 número' />
-
-        <View style={styles.footer}>
-          <NextStepButton onPress={() => {}}/>
-        </View>
-
+          <View style={styles.footer}>
+            <NextStepButton onPress={() => {navigation.navigate('Login')}}/>
+          </View>
+        </KeyboardAvoidingView>
       </View>
     </ScrollView>
   );
