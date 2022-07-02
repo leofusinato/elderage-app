@@ -4,6 +4,8 @@ export type AppStackParamList = {
   Login: undefined;
   RegisterName: undefined;
   RegisterAuth: undefined;
+  SignupStack: undefined;
+  Signup: undefined;
 };
 
 export type LoginNavigationProps = {
@@ -16,4 +18,12 @@ export type RegisterNameNavigationProps = {
 
 export type RegisterAuthNavigationProps = {
   navigation: NativeStackNavigationProp<AppStackParamList, "RegisterAuth">;
+};
+
+export type SignupStackNavigationProps = {
+  navigation: NativeStackNavigationProp<AppStackParamList, "SignupStack">;
+};
+
+export type SignupNavigationProps = {
+  navigation: NativeStackNavigationProp<AppStackParamList, "Signup">;
 };
