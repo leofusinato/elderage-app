@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 
 import {
   NavigationContainer,
@@ -7,7 +6,8 @@ import {
 
 import AppLoading from 'expo-app-loading';
 import { useFonts, Roboto_400Regular, Roboto_500Medium, Roboto_700Bold } from '@expo-google-fonts/roboto';
-import AuthRoutes from './src/routes/auth.routes';
+import { AuthProvider } from './src/contexts/AuthProvider';
+import Routes from './src/routes';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -20,7 +20,9 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <AuthRoutes/>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </NavigationContainer>
   );
 }
