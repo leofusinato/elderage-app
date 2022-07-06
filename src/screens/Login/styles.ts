@@ -29,8 +29,14 @@ export const styles = StyleSheet.create({
     color: theme.colors.primary,
     fontFamily: theme.fonts.regular,
     fontSize: 12,
-    textDecorationLine: 'underline',
-    marginTop: 24
+    textDecorationLine: "underline",
+    marginTop: 24,
+  },
+  footer: {
+    flex: 1,
+    alignItems: "flex-end",
+    justifyContent: "flex-end",
+    paddingBottom: 40,
   },
   registerButton: {
     marginTop: 32,
@@ -41,5 +47,5 @@ export const styles = StyleSheet.create({
     color: theme.colors.primary,
     fontFamily: theme.fonts.medium,
     fontSize: 16,
-  }
+  },
 });

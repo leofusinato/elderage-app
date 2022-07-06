@@ -39,5 +39,18 @@ export const styles = StyleSheet.create({
   footer: {
     flex: 1,
     justifyContent: "flex-end",
+    width: "100%",
+  },
+  buttonContainer: {
+    backgroundColor: theme.colors.success,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  buttonText: {
+    fontFamily: theme.fonts.medium,
+    color: theme.colors.white,
+    fontSize: 16,
   },
 });

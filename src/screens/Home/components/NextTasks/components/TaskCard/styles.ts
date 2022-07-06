@@ -6,7 +6,7 @@ const CARD_WIDTH = Dimensions.get("window").width;
 export const styles = StyleSheet.create({
   container: {
     width: CARD_WIDTH / 2 - 16,
-    marginLeft: 16,
+    marginRight: 16,
     padding: 16,
     backgroundColor: theme.colors.white,
     borderRadius: 16,
@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
   firstContainer: {
     backgroundColor: theme.colors.primary,
     borderWidth: 0,
+    marginLeft: 16,
   },
   header: {
     flexDirection: "row",

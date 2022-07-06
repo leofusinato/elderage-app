@@ -1,6 +1,7 @@
 import React from "react";
 
 import { ScrollView } from "react-native";
+import { AgedsList } from "./components/AgedsList";
 import { Header } from "./components/Header";
 import { NextTasks } from "./components/NextTasks";
 import { RecentlyCompleted } from "./components/RecentlyCompleted";
@@ -14,6 +15,7 @@ export function Home() {
 
       <NextTasks />
       <RecentlyCompleted />
+      <AgedsList />
     </ScrollView>
   );
 }

@@ -1,50 +1,131 @@
-import React, { useMemo, useState } from 'react';
-import { Keyboard, KeyboardAvoidingView, ScrollView, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import React, { useCallback, useMemo, useState } from "react";
+import {
+  Alert,
+  Keyboard,
+  KeyboardAvoidingView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 
-import { useNavigation } from '@react-navigation/native';
-import { NextStepButton } from '../components/NextStepButton';
+import { useNavigation } from "@react-navigation/native";
+import { NextStepButton } from "../components/NextStepButton";
 
-import { AppStackParamList } from '../../../global/route.types';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { theme } from '../../../global/styles';
-import { styles } from './styles';
-import AuthInput from '../../../components/Inputs/AuthInput';
-import { PasswordValidator } from './components/PasswordValidator';
+import {
+  AppStackParamList,
+  RegisterAuthNavigationProps,
+} from "../../../global/route.types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { theme } from "../../../global/styles";
+import { styles } from "./styles";
+import AuthInput from "../../../components/Inputs/AuthInput";
+import { PasswordValidator } from "./components/PasswordValidator";
+import { api } from "../../../services/api";
 
-export function RegisterAuth() {
-  const navigation = useNavigation<NativeStackNavigationProp<AppStackParamList, 'RegisterAuth'>>();
-  const [password, setPassword] = useState('');
+export function RegisterAuth({ route }: RegisterAuthNavigationProps) {
+  const navigation =
+    useNavigation<
+      NativeStackNavigationProp<AppStackParamList, "RegisterAuth">
+    >();
+  const name = route.params.name;
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const hasEightCharacters = useMemo(() => {
     return password.length >= 8;
-  }, [password])
+  }, [password]);
 
   const hasNumber = useMemo(() => {
     const regex = /[0-9]/;
     return regex.test(password);
-  }, [password])
+  }, [password]);
+
+  const validPassword = useMemo(() => {
+    return hasEightCharacters && hasNumber;
+  }, [password]);
+
+  const handleSignup = async () => {
+    if (email && validPassword) {
+      try {
+        await api.post("/users", { name, email, password });
+        navigation.navigate("Login");
+      } catch {
+        Alert.alert("Ops!", "Erro ao cadastrar o usuário");
+      }
+    } else {
+      Alert.alert(
+        "Atenção!",
+        "Verifique se o email está informado corretamente e se a senha atende aos requisitos"
+      );
+    }
+  };
 
   return (
-    <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <View style={styles.main}>
         <View style={styles.row}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <MaterialIcons name="keyboard-arrow-left" size={30} color={theme.colors.primary} />
+            <MaterialIcons
+              name="keyboard-arrow-left"
+              size={30}
+              color={theme.colors.primary}
+            />
           </TouchableOpacity>
           <Text style={styles.signupText}>Cadastre-se aqui</Text>
-          <MaterialIcons name="keyboard-arrow-left" size={24} color={theme.colors.white} />
+          <MaterialIcons
+            name="keyboard-arrow-left"
+            size={24}
+            color={theme.colors.white}
+          />
         </View>
-        <KeyboardAvoidingView behavior={'height'} style={{ flex: 1, width: '100%', alignItems: 'center', justifyContent: 'center' }}>
+        <KeyboardAvoidingView
+          behavior={"height"}
+          style={{
+            flex: 1,
+            width: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <Text style={styles.almost}>Quase lá...</Text>
-            <AuthInput placeholder='Nos informe o seu e-mail' leftIcon='user' keyboardType='email-address' />
-            <AuthInput placeholder='Crie uma senha' leftIcon='lock' isPassword value={password} onChangeText={(text) => setPassword(text)}/>
+          <AuthInput
+            placeholder="Nos informe o seu e-mail"
+            leftIcon="user"
+            value={email}
+            onChangeText={(email) => setEmail(email)}
+            keyboardType="email-address"
+          />
+          <AuthInput
+            placeholder="Crie uma senha"
+            leftIcon="lock"
+            isPassword
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
 
-            <PasswordValidator description='Necessário 8 dígitos' checked={hasEightCharacters} />
-            <PasswordValidator description='Ao menos 1 número' checked={hasNumber} />
+          <PasswordValidator
+            description="Necessário 8 dígitos"
+            checked={hasEightCharacters}
+          />
+          <PasswordValidator
+            description="Ao menos 1 número"
+            checked={hasNumber}
+          />
 
           <View style={styles.footer}>
-            <NextStepButton onPress={() => {navigation.navigate('Login')}}/>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              activeOpacity={0.5}
+              onPress={async () => await handleSignup()}
+            >
+              <Text style={styles.buttonText}>Cadastrar</Text>
+            </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
       </View>
