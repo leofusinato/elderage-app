@@ -12,6 +12,10 @@ import {
 import { AuthProvider } from "./src/contexts/AuthProvider";
 import Routes from "./src/routes";
 
+import moment from "moment";
+import "moment/locale/pt-br";
+moment.locale("pt-br");
+
 export default function App() {
   let [fontsLoaded] = useFonts({
     Roboto_400Regular,

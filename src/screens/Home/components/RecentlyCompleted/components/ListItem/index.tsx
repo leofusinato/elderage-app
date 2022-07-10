@@ -2,10 +2,16 @@ import React from "react";
 import { Text, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-import { styles } from "./styles";
+import { CheckinMedicationProps } from "../../../../../../global/models/checkin";
 import { theme } from "../../../../../../global/styles";
+import { styles } from "./styles";
+import moment from "moment";
 
-export function ListItem() {
+type Props = {
+  data: CheckinMedicationProps;
+};
+
+export function ListItem({ data }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.left}>
@@ -16,8 +22,8 @@ export function ListItem() {
           style={styles.icon}
         />
         <View>
-          <Text style={styles.title}>Calango Rodrigues</Text>
-          <Text style={styles.subtitle}>Remédio anemia</Text>
+          <Text style={styles.title}>{data.medication.aged.name}</Text>
+          <Text style={styles.subtitle}>{data.medication.description}</Text>
         </View>
       </View>
       <View style={styles.right}>
@@ -27,7 +33,7 @@ export function ListItem() {
           color={theme.colors.success}
           style={styles.icon}
         />
-        <Text>8h30</Text>
+        <Text>{moment(data.date_hour_applied).format("LT")}</Text>
       </View>
     </View>
   );
