@@ -7,6 +7,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
 import { Home } from "../screens/Home";
+import { Calendar } from "../screens/Calendar";
+
 import { StyleSheet, View } from "react-native";
 import { theme } from "../global/styles";
 
@@ -42,7 +44,7 @@ const MainRoutes: React.FC = () => {
       />
       <MainStack.Screen
         name="Calendar"
-        component={Home}
+        component={Calendar}
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }) => {
