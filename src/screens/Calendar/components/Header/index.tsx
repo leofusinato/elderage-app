@@ -19,10 +19,6 @@ export function Header() {
     setDateInterval(intervalDates);
   }, []);
 
-  useEffect(() => {
-    console.log(selectedDay);
-  }, [selectedDay]);
-
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.date}>

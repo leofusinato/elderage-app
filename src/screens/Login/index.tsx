@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import {
   View,
   ScrollView,
@@ -12,15 +13,16 @@ import { MaterialIcons } from "@expo/vector-icons";
 import AuthInput from "../../components/Inputs/AuthInput";
 import LoginButton from "./components/LoginButton";
 
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AppStackParamList } from "../../global/route.types";
-import { api } from "../../services/api";
-import { setAuth } from "../../services/auth.storage";
 import { AuthLoginResponse } from "../../global/models/auth";
+import { useAuth } from "../../contexts/AuthProvider";
+import { setAuth } from "../../services/auth.storage";
+import { api } from "../../services/api";
+
 import { theme } from "../../global/styles";
 import { styles } from "./styles";
-import { useAuth } from "../../contexts/AuthProvider";
+
+import { useNavigation } from "@react-navigation/native";
 
 export default function Login() {
   const { setUser } = useAuth();
@@ -31,21 +33,34 @@ export default function Login() {
 
   const handleLogin = async () => {
     if (email.length > 0 && password.length > 0) {
-      const response = await api.post<AuthLoginResponse>("/login", {
-        email,
-        password,
-      });
-      if (response.status === 200) {
-        const {
-          user: { id, name, email },
-          token,
-        } = response.data;
-        await setAuth({ id, name, email, token });
-        setUser({ id, name, email, token });
-        Alert.alert("OK!");
-      } else {
+      try {
+        const response = await api.post<AuthLoginResponse>("/login", {
+          email: email.toLocaleLowerCase().trim(),
+          password: password.toLocaleLowerCase().trim(),
+        });
+        if (response.status === 200) {
+          const {
+            user: { id, name, email },
+            token,
+          } = response.data;
+          await setAuth({ id, name, email, token });
+          setUser({ id, name, email, token });
+        }
+      } catch {
         Alert.alert("Ops!", "E-mail ou senha incorretos. Tente novamente");
       }
+    }
+  };
+
+  const handleRecoverPassword = async () => {
+    if (email.length > 0) {
+      const formattedEmail = email.toLocaleLowerCase().trim();
+      navigation.navigate("RecoveryPassword", { email: formattedEmail });
+      await api.post("forgotPassword", {
+        email: formattedEmail,
+      });
+    } else {
+      Alert.alert("", "Por favor, primeiro informe seu e-mail");
     }
   };
 
@@ -72,7 +87,7 @@ export default function Login() {
 
         <LoginButton onPress={async () => await handleLogin()} />
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={async () => await handleRecoverPassword()}>
           <Text style={styles.forgotPassword}>Esqueci minha senha</Text>
         </TouchableOpacity>
 

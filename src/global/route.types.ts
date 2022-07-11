@@ -9,6 +9,12 @@ export type AppStackParamList = {
   };
   SignupStack: undefined;
   Signup: undefined;
+  RecoveryPassword: {
+    email: string;
+  };
+  NewPassword: {
+    email: string;
+  };
 };
 
 export type LoginNavigationProps = {
@@ -22,6 +28,16 @@ export type RegisterNameNavigationProps = {
 export type RegisterAuthNavigationProps = {
   route: RouteProp<AppStackParamList, "RegisterAuth">;
   navigation: NativeStackNavigationProp<AppStackParamList, "RegisterAuth">;
+};
+
+export type RecoveryPasswordNavigationProps = {
+  route: RouteProp<AppStackParamList, "RecoveryPassword">;
+  navigation: NativeStackNavigationProp<AppStackParamList, "RecoveryPassword">;
+};
+
+export type NewPasswordNavigationProps = {
+  route: RouteProp<AppStackParamList, "NewPassword">;
+  navigation: NativeStackNavigationProp<AppStackParamList, "NewPassword">;
 };
 
 export type SignupStackNavigationProps = {

@@ -1,15 +1,21 @@
-import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
-import { styles } from './styles';
+import React from "react";
+import { TouchableOpacity, Text, ViewStyle, StyleProp } from "react-native";
+import { styles } from "./styles";
 
 type Props = {
-  onPress: () => Promise<void>
-}
+  onPress: () => Promise<void>;
+  description?: string;
+  style?: StyleProp<ViewStyle>;
+};
 
-export default function LoginButton({ onPress }: Props) {
+export default function LoginButton({ onPress, description, style }: Props) {
   return (
-    <TouchableOpacity style={styles.container} activeOpacity={0.5} onPress={onPress}>
-      <Text style={styles.text}>Entrar</Text>
+    <TouchableOpacity
+      style={[styles.container, style]}
+      activeOpacity={0.5}
+      onPress={onPress}
+    >
+      <Text style={styles.text}>{description || "Entrar"}</Text>
     </TouchableOpacity>
-  )
+  );
 }
