@@ -2,6 +2,7 @@ import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { styles } from "./styles";
 import { theme } from "../../../../../../global/styles";
@@ -17,7 +18,13 @@ export function TaskCard({ first }: Props) {
       activeOpacity={0.8}
     >
       <View style={styles.header}>
-        <View style={styles.image} />
+        <View style={styles.image}>
+          <MaterialCommunityIcons
+            name={first ? "face-man" : "face-woman"}
+            size={30}
+            color={first ? theme.colors.white : theme.colors.primary}
+          />
+        </View>
         <View style={styles.headerInfoContainer}>
           <FontAwesome5
             name="clock"

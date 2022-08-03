@@ -5,6 +5,7 @@ import { theme } from "../../../../global/styles";
 export const styles = StyleSheet.create({
   container: {
     paddingTop: getStatusBarHeight() + 40,
+    marginBottom: 32,
   },
   date: {
     flexDirection: "row",
