@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { DateItem } from "./components/DateItem";
 
@@ -8,6 +8,7 @@ import { theme } from "../../../../global/styles";
 import { styles } from "./styles";
 
 export function Header() {
+  const scrollViewRef = useRef<FlatList>(null);
   const [dateInterval, setDateInterval] = useState<Date[]>([]);
   const [selectedDay, setSelectedDay] = useState(new Date().getDate());
 
@@ -18,6 +19,11 @@ export function Header() {
     const intervalDates = getDatesInRange(firstDayInMonth, lastDayInMont);
     setDateInterval(intervalDates);
   }, []);
+
+  const handleChangeDate = (day: number) => {
+    setSelectedDay(day);
+    scrollViewRef.current?.scrollToIndex({ viewPosition: 0.5, index: day - 1 });
+  };
 
   return (
     <View style={styles.container}>
@@ -31,21 +37,24 @@ export function Header() {
         />
       </TouchableOpacity>
 
-      <ScrollView
-        horizontal
+      <FlatList
+        data={dateInterval}
+        ref={scrollViewRef}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.scroll}
-      >
-        {dateInterval.map((date, index) => (
-          <DateItem
-            key={index}
-            date={date.getDate()}
-            weekDay={getAbbreviatedWeekDay(date.getDay())}
-            onChangeDate={(day) => setSelectedDay(day)}
-            selected={selectedDay == date.getDate()}
-          />
-        ))}
-      </ScrollView>
+        horizontal
+        renderItem={({ item, index }) => {
+          return (
+            <DateItem
+              key={index}
+              date={item.getDate()}
+              weekDay={getAbbreviatedWeekDay(item.getDay())}
+              onChangeDate={(day) => handleChangeDate(day)}
+              selected={selectedDay == item.getDate()}
+            />
+          );
+        }}
+      />
     </View>
   );
 }

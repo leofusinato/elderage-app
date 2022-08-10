@@ -2,6 +2,8 @@ import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export type AppStackParamList = {
+  Home: undefined;
+  Calendar: undefined;
   Login: undefined;
   RegisterName: undefined;
   RegisterAuth: {
@@ -46,4 +48,12 @@ export type SignupStackNavigationProps = {
 
 export type SignupNavigationProps = {
   navigation: NativeStackNavigationProp<AppStackParamList, "Signup">;
+};
+
+export type HomeNavigationProps = {
+  navigation: NativeStackNavigationProp<AppStackParamList, "Home">;
+};
+
+export type CalendarNavigationProps = {
+  navigation: NativeStackNavigationProp<AppStackParamList, "Calendar">;
 };

@@ -19,9 +19,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    height: 32,
-    width: 32,
-    borderRadius: 16,
+    height: 40,
+    width: 40,
+    borderRadius: 20,
     backgroundColor: theme.colors.white,
     justifyContent: "center",
     alignItems: "center",

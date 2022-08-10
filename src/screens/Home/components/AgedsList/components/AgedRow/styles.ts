@@ -18,7 +18,6 @@ export const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 15,
-    backgroundColor: theme.colors.neutral300,
     marginRight: 16,
   },
   name: {

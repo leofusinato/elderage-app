@@ -1,8 +1,11 @@
+import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 
 import { ScrollView } from "react-native";
 import { AgedProps } from "../../global/models/aged";
 import { CheckinMedicationProps } from "../../global/models/checkin";
+import { NextTaskProps } from "../../global/models/task";
+import { theme } from "../../global/styles";
 import { api } from "../../services/api";
 import { AgedsList } from "./components/AgedsList";
 import { Header } from "./components/Header";
@@ -14,6 +17,7 @@ import { styles } from "./styles";
 type HomeDataProps = {
   ageds: AgedProps[];
   tasks: CheckinMedicationProps[];
+  nextTasks: NextTaskProps[];
 };
 
 export function Home() {
@@ -37,12 +41,14 @@ export function Home() {
   }
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <Header />
-
-      <NextTasks />
-      <RecentlyCompleted data={data.tasks} />
-      <AgedsList data={data.ageds} />
-    </ScrollView>
+    <>
+      <StatusBar backgroundColor={theme.colors.white} />
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        <Header />
+        <NextTasks data={data.nextTasks} />
+        <RecentlyCompleted data={data.tasks} />
+        <AgedsList data={data.ageds} />
+      </ScrollView>
+    </>
   );
 }

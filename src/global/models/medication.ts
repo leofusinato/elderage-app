@@ -1,4 +1,5 @@
 import { AgedProps } from "./aged";
+import { ScheduleProps } from "./task";
 
 export type MedicationProps = {
   id: string;
@@ -9,4 +10,5 @@ export type MedicationProps = {
   time_description: string;
   created_at: string;
   aged: AgedProps;
+  schedules?: ScheduleProps[];
 };

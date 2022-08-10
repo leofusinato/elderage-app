@@ -16,3 +16,15 @@ export function getDatesInRange(startDate: Date, endDate: Date) {
 export function getAbbreviatedWeekDay(day: number) {
   return abbreviatedWeekDays[day];
 }
+
+export function formatDateToApi(date: Date) {
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+}
+
+export function formatTime(time?: string) {
+  if (!time) {
+    return "";
+  }
+  const [hour, minutes] = time.split(":");
+  return `${hour}h${minutes}`;
+}

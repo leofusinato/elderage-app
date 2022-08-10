@@ -19,7 +19,7 @@ export function AgedsList({ data }: Props) {
       <Text style={styles.title}>Idosos registrados</Text>
 
       {data.map((aged) => (
-        <AgedRow key={aged.id} name={aged.name} />
+        <AgedRow key={aged.id} gender={aged.gender} name={aged.name} />
       ))}
     </View>
   );

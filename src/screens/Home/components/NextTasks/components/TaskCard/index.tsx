@@ -3,15 +3,19 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { NextTaskProps } from "../../../../../../global/models/task";
 
 import { styles } from "./styles";
 import { theme } from "../../../../../../global/styles";
+import moment from "moment";
+import { formatTime } from "../../../../../../utils/date";
 
 type Props = {
+  data: NextTaskProps;
   first: boolean;
 };
 
-export function TaskCard({ first }: Props) {
+export function TaskCard({ data, first }: Props) {
   return (
     <TouchableOpacity
       style={[styles.container, first ? styles.firstContainer : {}]}
@@ -20,30 +24,32 @@ export function TaskCard({ first }: Props) {
       <View style={styles.header}>
         <View style={styles.image}>
           <MaterialCommunityIcons
-            name={first ? "face-man" : "face-woman"}
+            name={data.aged.gender === "M" ? "face-man" : "face-woman"}
             size={30}
             color={first ? theme.colors.white : theme.colors.primary}
           />
         </View>
         <View style={styles.headerInfoContainer}>
           <FontAwesome5
-            name="clock"
+            name={data.time_type === 1 ? "capsules" : "clock"}
             size={12}
             color={theme.colors.primary}
             style={styles.clock}
           />
-          <Text style={styles.hour}>9h30</Text>
+          <Text style={styles.hour}>
+            {data.time_type === 1 ? data.remaining : formatTime(data.schedule)}
+          </Text>
         </View>
       </View>
       <Text style={[styles.name, first ? styles.firstCardName : {}]}>
-        Hérciles Jesus
+        {data.aged.name}
       </Text>
       <View style={styles.footer}>
         <Text
           numberOfLines={1}
           style={[styles.description, first ? styles.firstDescription : {}]}
         >
-          Dipirona
+          {data.description}
         </Text>
         <TouchableOpacity
           hitSlop={{ bottom: 10, left: 10, right: 10, top: 10 }}

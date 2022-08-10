@@ -8,10 +8,24 @@ import { theme } from "../../../../global/styles";
 import { styles } from "./styles";
 
 type Props = {
+  gender: string;
+  agedName: string;
+  description: string;
+  local: string;
+  time?: string | number;
+  timeType: number;
   done?: boolean;
 };
 
-export function Card({ done }: Props) {
+export function Card({
+  gender,
+  agedName,
+  description,
+  local,
+  time,
+  timeType,
+  done,
+}: Props) {
   const mainColor = useMemo(() => {
     return done ? theme.colors.success : theme.colors.primary;
   }, [done]);
@@ -25,31 +39,35 @@ export function Card({ done }: Props) {
         <View style={styles.left}>
           <View style={styles.image}>
             <MaterialCommunityIcons
-              name={"face-man"}
+              name={gender === "M" ? "face-man" : "face-woman"}
               size={30}
               color={mainColor}
             />
           </View>
-          <Text style={styles.name}>Hérciles Jesus</Text>
+          <Text style={styles.name}>{agedName}</Text>
         </View>
         <View style={styles.right}>
-          <FontAwesome5 name="clock" size={15} color={mainColor} />
-          <Text style={[styles.hour, { color: mainColor }]}>9h30</Text>
+          <FontAwesome5
+            name={timeType === 1 ? "capsules" : "clock"}
+            size={15}
+            color={mainColor}
+          />
+          <Text style={[styles.hour, { color: mainColor }]}>{time}</Text>
         </View>
       </View>
       <View style={styles.descriptionContainer}>
         <Text style={[styles.description, { color: mainColor }]}>
-          Dar 2 doses de Iosartana Potássica
+          {description}
         </Text>
       </View>
       <View style={styles.footer}>
         <View style={styles.footerLeft}>
-          <MaterialCommunityIcons
-            name={"check"}
-            size={25}
+          <FontAwesome5
+            name={"capsules"}
+            size={18}
             color={theme.colors.white}
           />
-          <Text style={styles.local}>Asilo Pray the Sun, quarto 03</Text>
+          <Text style={styles.local}>{local}</Text>
         </View>
         {!done && (
           <TouchableOpacity
