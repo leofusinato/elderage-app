@@ -1,5 +1,28 @@
 const abbreviatedWeekDays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
 
+export const months = [
+  "Jan",
+  "Fev",
+  "Mar",
+  "Abr",
+  "Mai",
+  "Jun",
+  "Jul",
+  "Ago",
+  "Set",
+  "Out",
+  "Nov",
+  "Dez",
+];
+
+export const years = () => {
+  let list = [];
+  for (let i = 1920; i <= new Date().getFullYear(); i++) {
+    list.push(String(i));
+  }
+  return list;
+};
+
 export function getDatesInRange(startDate: Date, endDate: Date) {
   const date = new Date(startDate.getTime());
 

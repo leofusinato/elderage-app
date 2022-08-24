@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
+
 import { Entypo } from "@expo/vector-icons";
 import { DateItem } from "./components/DateItem";
 
@@ -8,9 +9,11 @@ import { theme } from "../../../../global/styles";
 import { styles } from "./styles";
 
 export function Header() {
+  const [date, setDate] = useState("");
   const scrollViewRef = useRef<FlatList>(null);
   const [dateInterval, setDateInterval] = useState<Date[]>([]);
   const [selectedDay, setSelectedDay] = useState(new Date().getDate());
+  const [showPicker, setShowPicker] = useState(false);
 
   useEffect(() => {
     const date = new Date();
@@ -27,8 +30,8 @@ export function Header() {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.date}>
-        <Text style={styles.dateText}>Julho, 2022</Text>
+      <TouchableOpacity style={styles.date} onPress={() => setShowPicker(true)}>
+        <Text style={styles.dateText}>{date}</Text>
         <Entypo
           name="chevron-down"
           size={20}
@@ -36,7 +39,7 @@ export function Header() {
           style={styles.icon}
         />
       </TouchableOpacity>
-
+      <MonthPickerModal />
       <FlatList
         data={dateInterval}
         ref={scrollViewRef}

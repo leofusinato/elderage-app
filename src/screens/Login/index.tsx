@@ -36,7 +36,7 @@ export default function Login() {
       try {
         const response = await api.post<AuthLoginResponse>("/login", {
           email: email.toLocaleLowerCase().trim(),
-          password: password.toLocaleLowerCase().trim(),
+          password: password.trim(),
         });
         if (response.status === 200) {
           const {
