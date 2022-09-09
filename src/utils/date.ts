@@ -15,12 +15,43 @@ export const months = [
   "Dez",
 ];
 
+const everyDays = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
+  24, 25, 26, 27, 28, 29, 30, 31,
+];
+
 export const years = () => {
   let list = [];
   for (let i = 1920; i <= new Date().getFullYear(); i++) {
     list.push(String(i));
   }
   return list;
+};
+
+export const daysByMonth = (month: number) => {
+  let allDays = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+    23, 24, 25, 26, 27, 28, 29, 30, 31,
+  ];
+  const monthWith31Days = [1, 3, 5, 7, 8, 10, 12];
+  console.log(monthWith31Days.includes(month));
+  if (monthWith31Days.includes(month)) {
+    console.log("retornando tudo");
+    return allDays;
+  } else if (month === 2) {
+    const currentYear = new Date().getFullYear();
+    if (currentYear % 4 === 0) {
+      allDays.pop();
+      allDays.pop();
+    } else {
+      allDays.pop();
+      allDays.pop();
+      allDays.pop();
+    }
+  } else {
+    allDays.pop();
+  }
+  return allDays;
 };
 
 export function getDatesInRange(startDate: Date, endDate: Date) {

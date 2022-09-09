@@ -5,15 +5,24 @@ import { theme } from "../../../../global/styles";
 
 type Props = {
   placeholder: string;
-  data: string[];
+  data: string[] | number[];
+  onSelect: (value: string, index: number) => void;
   style?: StyleProp<ViewStyle>;
+  defaultValue?: any;
 };
 
-export function Selector({ placeholder, data, style }: Props) {
+export function Selector({
+  placeholder,
+  data,
+  style,
+  onSelect,
+  defaultValue,
+}: Props) {
   return (
     <SelectDropdown
       data={data}
       buttonStyle={style}
+      defaultValue={defaultValue}
       defaultButtonText={placeholder}
       buttonTextStyle={{
         fontFamily: theme.fonts.regular,
@@ -21,18 +30,12 @@ export function Selector({ placeholder, data, style }: Props) {
         color: theme.colors.neutral300,
       }}
       onSelect={(selectedItem, index) => {
-        console.log(selectedItem, index);
+        onSelect(selectedItem, index);
       }}
-      buttonTextAfterSelection={(selectedItem, index) => {
-        // text represented after item is selected
-        // if data array is an array of objects then return selectedItem.property to render after item is selected
+      buttonTextAfterSelection={(selectedItem) => {
         return selectedItem;
       }}
-      rowTextForSelection={(item, index) => {
-        // text represented for each item in dropdown
-        // if data array is an array of objects then return item.property to represent item in dropdown
-        return item;
-      }}
+      rowTextForSelection={(item) => item}
     />
   );
 }

@@ -12,7 +12,7 @@ import { styles } from "./styles";
 
 type Props = {
   placeholder?: string;
-  leftIcon: any;
+  leftIcon?: any;
   style?: StyleProp<ViewStyle>;
   isPassword?: boolean;
 } & TextInputProps;

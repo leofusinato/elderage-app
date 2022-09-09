@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import { theme } from "../../global/styles";
-import { months, years } from "../../utils/date";
+import { daysByMonth, months, years } from "../../utils/date";
 import { Row } from "../Row";
 import { Selector } from "./components/Selector";
 
-const days = ["1", "2", "3"];
-
 export function DateSelector() {
+  const [day, setDay] = useState(1);
+  const [month, setMonth] = useState(0);
+  const [year, setYear] = useState(2000);
+
+  const allDays = useMemo(() => {
+    return daysByMonth(month + 1);
+  }, [month]);
+
   return (
     <Row style={{ width: "100%" }}>
       <Selector
-        data={days}
+        onSelect={(value) => setDay(Number(value))}
+        data={allDays}
+        defaultValue={day}
         placeholder="Dia"
         style={{
           flex: 1,
@@ -20,7 +28,9 @@ export function DateSelector() {
         }}
       />
       <Selector
+        onSelect={(_, index) => setMonth(Number(index))}
         data={months}
+        defaultValue={"Jan"}
         placeholder="Mês"
         style={{
           flex: 1,
@@ -30,8 +40,10 @@ export function DateSelector() {
         }}
       />
       <Selector
+        onSelect={(value) => setYear(Number(value))}
         data={years()}
         placeholder="Ano"
+        defaultValue={year}
         style={{
           flex: 1,
           borderRadius: 8,

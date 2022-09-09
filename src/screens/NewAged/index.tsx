@@ -2,17 +2,14 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 
 import { View, Text, TouchableOpacity } from "react-native";
+import { Address } from "./components/Address";
+import { Gender } from "./components/Gender";
 import { Header } from "./components/Header";
 import { InitialInfo } from "./components/InitialInfo";
 
 import { styles } from "./styles";
 
-const screens = [
-  <InitialInfo />,
-  <View>
-    <Text>2</Text>
-  </View>,
-];
+const screens = [<InitialInfo />, <Gender />, <Address />];
 
 export function NewAged() {
   const [screenStep, setScreenStep] = useState(0);

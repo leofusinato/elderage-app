@@ -10,6 +10,7 @@ export const theme = {
     neutral300: "#B0A8B9",
     neutral500: "#877B93",
     neutral700: "#322D37",
+    primaryBackground: "#F2EBFF",
     background: "#FEFEFE",
   },
   fonts: {

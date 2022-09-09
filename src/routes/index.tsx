@@ -12,7 +12,6 @@ const Routes: React.FC = () => {
       await loadStorageData();
     })();
   }, []);
-
   const loadStorageData = useCallback(async () => {
     // const isAuth = await localStorage.clear();
     const isAuth = await localStorage.isAuthenticated();
