@@ -2,19 +2,22 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AppStackParamList } from "../global/route.types";
 
-import { RegisterName } from "../screens/Signup/RegisterName";
-import { RegisterAuth } from "../screens/Signup/RegisterAuth";
+import { NewAgedProvider } from "../contexts/NewAgedProvider";
+import { NewAged } from "../screens/NewAged";
 
 const NewAgedStack = createNativeStackNavigator<AppStackParamList>();
 
 export default function NewAgedRoutes() {
-  <NewAgedStack.Navigator
-    screenOptions={{
-      animation: "none",
-      headerShown: false,
-    }}
-  >
-    <NewAgedStack.Screen name="RegisterName" component={RegisterName} />
-    <NewAgedStack.Screen name="RegisterAuth" component={RegisterAuth} />
-  </NewAgedStack.Navigator>;
+  return (
+    <NewAgedProvider>
+      <NewAgedStack.Navigator
+        screenOptions={{
+          animation: "none",
+          headerShown: false,
+        }}
+      >
+        <NewAgedStack.Screen name="AddAged" component={NewAged} />
+      </NewAgedStack.Navigator>
+    </NewAgedProvider>
+  );
 }

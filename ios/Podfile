@@ -26,6 +26,9 @@ target 'elderage' do
     :app_path => "#{Dir.pwd}/.."
   )
 
+  pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text', :modular_headers => true
+
+
   # Uncomment to opt-in to using Flipper
   # Note that if you have use_frameworks! enabled, Flipper will not work
   #

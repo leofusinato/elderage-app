@@ -4,6 +4,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 export type AppStackParamList = {
   Home: undefined;
   Calendar: undefined;
+  AddAged: undefined;
   Login: undefined;
   RegisterName: undefined;
   RegisterAuth: {
@@ -56,4 +57,8 @@ export type HomeNavigationProps = {
 
 export type CalendarNavigationProps = {
   navigation: NativeStackNavigationProp<AppStackParamList, "Calendar">;
+};
+
+export type AddAgedNavigationProps = {
+  navigation: NativeStackNavigationProp<AppStackParamList, "AddAged">;
 };

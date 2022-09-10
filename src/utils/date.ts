@@ -34,9 +34,7 @@ export const daysByMonth = (month: number) => {
     23, 24, 25, 26, 27, 28, 29, 30, 31,
   ];
   const monthWith31Days = [1, 3, 5, 7, 8, 10, 12];
-  console.log(monthWith31Days.includes(month));
   if (monthWith31Days.includes(month)) {
-    console.log("retornando tudo");
     return allDays;
   } else if (month === 2) {
     const currentYear = new Date().getFullYear();

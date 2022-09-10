@@ -39,7 +39,7 @@ export function Header() {
           style={styles.icon}
         />
       </TouchableOpacity>
-      <MonthPickerModal />
+      {/* <MonthPickerModal /> */}
       <FlatList
         data={dateInterval}
         ref={scrollViewRef}

@@ -5,7 +5,8 @@ import { theme } from "../../../../global/styles";
 export const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    paddingVertical: getStatusBarHeight(),
+    paddingTop: getStatusBarHeight() + 16,
+    paddingBottom: 16,
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",

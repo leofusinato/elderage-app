@@ -12,6 +12,7 @@ import { Calendar } from "../screens/Calendar";
 import { StyleSheet, View } from "react-native";
 import { theme } from "../global/styles";
 import { NewAged } from "../screens/NewAged";
+import NewAgedRoutes from "./newAged.routes";
 
 const MainStack = createBottomTabNavigator();
 
@@ -66,8 +67,8 @@ const MainRoutes: React.FC = () => {
         }}
       />
       <MainStack.Screen
-        name="AddAged"
-        component={NewAged}
+        name="NewAged"
+        component={NewAgedRoutes}
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }) => {

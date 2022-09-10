@@ -37,14 +37,26 @@
     "react-native-select-dropdown": "^2.0.4",
     "react-native-svg": "12.3.0",
     "react-native-svg-transformer": "^1.0.0",
+    "react-native-text-input-mask": "^3.1.4",
     "react-native-web": "0.17.7",
     "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "@types/react": "^18.0.17",
+    "@types/react": "~17.0.21",
     "@types/react-dom": "^18.0.6",
-    "typescript": "~4.3.5"
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "^22.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.31.8",
+    "prettier": "^2.7.1",
+    "typescript": "*"
   },
   "private": true
 }

@@ -1,11 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useNewAged } from "../../contexts/NewAgedProvider";
 
 import { theme } from "../../global/styles";
 import { daysByMonth, months, years } from "../../utils/date";
 import { Row } from "../Row";
 import { Selector } from "./components/Selector";
 
-export function DateSelector() {
+type Props = {
+  onSelect: (date: string) => void;
+};
+
+export function DateSelector({ onSelect }: Props) {
   const [day, setDay] = useState(1);
   const [month, setMonth] = useState(0);
   const [year, setYear] = useState(2000);
@@ -13,6 +18,11 @@ export function DateSelector() {
   const allDays = useMemo(() => {
     return daysByMonth(month + 1);
   }, [month]);
+
+  useEffect(() => {
+    const date = `${year}/${month + 1}/${day}`;
+    onSelect(date);
+  }, [day, month, year]);
 
   return (
     <Row style={{ width: "100%" }}>

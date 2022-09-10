@@ -3,7 +3,7 @@ import { theme } from "../../global/styles";
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1,  
   },
   footer: {
     paddingHorizontal: 16,

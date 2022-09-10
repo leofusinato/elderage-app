@@ -4,24 +4,27 @@ import { Text, View } from "react-native";
 import { Selector } from "../../../../components/DateSelector/components/Selector";
 import AuthInput from "../../../../components/Inputs/AuthInput";
 import { Row } from "../../../../components/Row";
+import { useNewAged } from "../../../../contexts/NewAgedProvider";
 import { theme } from "../../../../global/styles";
 import { states } from "../../../../utils/address";
 
 import { styles } from "./styles";
 
 export function Address() {
-  const [state, setState] = useState("");
+  const { setProps } = useNewAged();
 
   return (
     <View style={styles.container}>
       <Text style={styles.address}>Insira o endereço de moradia do idoso</Text>
       <AuthInput
         leftIcon="home"
+        onChangeText={(address) => setProps({ address })}
         style={{ backgroundColor: theme.colors.white, borderWidth: 0 }}
       />
       <Text style={styles.address}>Insira a cidade e o estado</Text>
       <Row>
         <AuthInput
+          onChangeText={(city) => setProps({ city })}
           style={{
             backgroundColor: theme.colors.white,
             borderWidth: 0,
@@ -30,7 +33,7 @@ export function Address() {
           }}
         />
         <Selector
-          onSelect={(selected) => setState(selected)}
+          onSelect={(state) => setProps({ state })}
           data={states}
           placeholder="UF"
           style={{

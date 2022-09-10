@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
 import { styles } from "./styles";
@@ -7,9 +7,16 @@ import FemaleAged from "../../../../assets/images/female-aged.png";
 import MaleAged from "../../../../assets/images/male-aged.png";
 import { Row } from "../../../../components/Row";
 import { theme } from "../../../../global/styles";
+import { useNewAged } from "../../../../contexts/NewAgedProvider";
 
 export function Gender() {
+  const { setProps } = useNewAged();
   const [gender, setGender] = useState("");
+
+  const handleChangeGender = useCallback((gender: string) => {
+    setGender(gender);
+    setProps({ gender });
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -21,7 +28,7 @@ export function Gender() {
           <View>
             <TouchableOpacity
               activeOpacity={1}
-              onPress={() => setGender("F")}
+              onPress={() => handleChangeGender("F")}
               style={{
                 borderWidth: 2,
                 borderColor:
@@ -43,7 +50,7 @@ export function Gender() {
           <View>
             <TouchableOpacity
               activeOpacity={1}
-              onPress={() => setGender("M")}
+              onPress={() => handleChangeGender("M")}
               style={{
                 borderWidth: 2,
                 borderColor:

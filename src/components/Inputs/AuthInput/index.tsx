@@ -1,21 +1,17 @@
 import React, { useState } from "react";
-import {
-  View,
-  TextInput,
-  ViewStyle,
-  StyleProp,
-  TextInputProps,
-  TouchableOpacity,
-} from "react-native";
+import { View, ViewStyle, StyleProp, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { styles } from "./styles";
+import TextInputMask, {
+  TextInputMaskProps,
+} from "react-native-text-input-mask";
 
 type Props = {
   placeholder?: string;
   leftIcon?: any;
   style?: StyleProp<ViewStyle>;
   isPassword?: boolean;
-} & TextInputProps;
+} & TextInputMaskProps;
 
 export default function AuthInput({
   placeholder = "",
@@ -29,7 +25,7 @@ export default function AuthInput({
   return (
     <View style={[styles.container, style]}>
       <Feather name={leftIcon} size={20} style={styles.icon} />
-      <TextInput
+      <TextInputMask
         placeholder={placeholder}
         style={styles.input}
         secureTextEntry={isPassword && hidePassword}
