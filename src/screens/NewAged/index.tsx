@@ -18,7 +18,7 @@ import { styles } from "./styles";
 const screens = [<InitialInfo />, <Gender />, <Address />, <Contact />];
 
 export function NewAged() {
-  const { newAged } = useNewAged();
+  const { newAged, setNewAged } = useNewAged();
   const [screenStep, setScreenStep] = useState(0);
 
   const navigation =
@@ -37,10 +37,19 @@ export function NewAged() {
     }
   };
 
+  const handlePreviosuStep = () => {
+    if (screenStep === 0) {
+      navigation.goBack();
+    } else {
+      setScreenStep((current) => current - 1);
+    }
+  };
+
   const addAged = async () => {
     try {
       const response = await api.post("/aged", newAged);
       if (response.status === 200) {
+        setNewAged(null);
         navigation.navigate("Home");
       }
     } catch (err) {
@@ -82,10 +91,7 @@ export function NewAged() {
     <>
       <StatusBar hidden />
       <View style={styles.container}>
-        <Header
-          disabled={screenStep === 0}
-          onBack={() => setScreenStep((current) => current - 1)}
-        />
+        <Header onBack={handlePreviosuStep} />
         {screens[screenStep]}
         <View style={styles.footer}>
           <TouchableOpacity

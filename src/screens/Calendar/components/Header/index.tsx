@@ -1,62 +1,67 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { View } from "react-native";
 
-import { Entypo } from "@expo/vector-icons";
-import { DateItem } from "./components/DateItem";
-
-import { getAbbreviatedWeekDay, getDatesInRange } from "../../../../utils/date";
 import { theme } from "../../../../global/styles";
 import { styles } from "./styles";
+import CalendarStrip from "react-native-calendar-strip";
+import { Moment } from "moment";
 
-export function Header() {
-  const [date, setDate] = useState("");
-  const scrollViewRef = useRef<FlatList>(null);
-  const [dateInterval, setDateInterval] = useState<Date[]>([]);
-  const [selectedDay, setSelectedDay] = useState(new Date().getDate());
-  const [showPicker, setShowPicker] = useState(false);
+type Props = {
+  onChangeDate: (date: Date) => void;
+};
 
-  useEffect(() => {
-    const date = new Date();
-    const firstDayInMonth = new Date(date.getFullYear(), date.getMonth(), 1);
-    const lastDayInMont = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-    const intervalDates = getDatesInRange(firstDayInMonth, lastDayInMont);
-    setDateInterval(intervalDates);
-  }, []);
+export function Header({ onChangeDate }: Props) {
+  const [date, setDate] = useState(new Date());
 
-  const handleChangeDate = (day: number) => {
-    setSelectedDay(day);
-    scrollViewRef.current?.scrollToIndex({ viewPosition: 0.5, index: day - 1 });
+  const handleChangeDate = (date: Moment) => {
+    setDate(date.toDate());
+    onChangeDate(date.toDate());
   };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.date} onPress={() => setShowPicker(true)}>
-        <Text style={styles.dateText}>{date}</Text>
-        <Entypo
-          name="chevron-down"
-          size={20}
-          color={theme.colors.neutral700}
-          style={styles.icon}
-        />
-      </TouchableOpacity>
-      {/* <MonthPickerModal /> */}
-      <FlatList
-        data={dateInterval}
-        ref={scrollViewRef}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.scroll}
-        horizontal
-        renderItem={({ item, index }) => {
-          return (
-            <DateItem
-              key={index}
-              date={item.getDate()}
-              weekDay={getAbbreviatedWeekDay(item.getDay())}
-              onChangeDate={(day) => handleChangeDate(day)}
-              selected={selectedDay == item.getDate()}
-            />
-          );
+      <CalendarStrip
+        style={{ height: 120 }}
+        scrollable
+        headerText=""
+        selectedDate={date}
+        onDateSelected={handleChangeDate}
+        calendarHeaderStyle={{
+          color: theme.colors.primary,
+          fontFamily: theme.fonts.bold,
+          fontWeight: "normal",
+          fontSize: 20,
         }}
+        dateNumberStyle={{
+          color: theme.colors.primary,
+          fontFamily: theme.fonts.regular,
+          fontWeight: "normal",
+          fontSize: 20,
+        }}
+        dateNameStyle={{
+          color: theme.colors.neutral500,
+          fontFamily: theme.fonts.regular,
+          fontWeight: "300",
+          fontSize: 12,
+        }}
+        highlightDateNumberStyle={{
+          color: theme.colors.neutral100,
+          fontFamily: theme.fonts.regular,
+          fontWeight: "normal",
+          fontSize: 20,
+        }}
+        dayContainerStyle={{
+          backgroundColor: theme.colors.neutral100,
+          borderRadius: 8,
+        }}
+        highlightDateContainerStyle={{
+          backgroundColor: theme.colors.primary,
+        }}
+        highlightDateNameStyle={{
+          color: theme.colors.white,
+        }}
+        leftSelector={[]}
+        rightSelector={[]}
       />
     </View>
   );

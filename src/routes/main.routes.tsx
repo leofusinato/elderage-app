@@ -70,6 +70,9 @@ const MainRoutes: React.FC = () => {
         name="NewAged"
         component={NewAgedRoutes}
         options={{
+          tabBarStyle: {
+            display: "none",
+          },
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }) => {
             return (

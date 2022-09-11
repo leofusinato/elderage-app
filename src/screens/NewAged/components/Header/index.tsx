@@ -8,26 +8,23 @@ import { Row } from "../../../../components/Row";
 
 type Props = {
   onBack: () => void;
-  disabled: boolean;
 };
 
-export function Header({ onBack, disabled }: Props) {
+export function Header({ onBack }: Props) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={onBack} disabled={disabled}>
+      <TouchableOpacity onPress={onBack}>
         <Row>
           <Entypo
             name="chevron-left"
             size={28}
-            color={disabled ? theme.colors.neutral300 : theme.colors.neutral700}
+            color={theme.colors.neutral700}
           />
           <Text
             style={[
               styles.backText,
               {
-                color: disabled
-                  ? theme.colors.neutral300
-                  : theme.colors.neutral700,
+                color: theme.colors.neutral700,
               },
             ]}
           >

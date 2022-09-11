@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { View, ScrollView, Alert } from "react-native";
 import { Loading } from "../../components/Loading";
@@ -23,7 +23,6 @@ export function Calendar() {
     setLoading(true);
     try {
       const formattedDate = formatDateToApi(date);
-      console.log(formattedDate);
       const response = await api.get<TasksProps>(
         `/tasks/date/${formattedDate}`
       );
@@ -42,7 +41,7 @@ export function Calendar() {
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <Header />
+      <Header onChangeDate={async (date) => await getTasks(date)} />
       <Loading loading={loading}>
         <View style={styles.content}>
           {tasks?.pending.map((task, index) => (
