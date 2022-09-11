@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Text, View } from "react-native";
 import { DateSelector } from "../../../../components/DateSelector";
@@ -10,6 +10,10 @@ import { styles } from "./styles";
 
 export function InitialInfo() {
   const { setProps } = useNewAged();
+
+  useEffect(() => {
+    setProps({ birthdate: "2000/01/01" });
+  }, []);
 
   return (
     <View style={styles.container}>

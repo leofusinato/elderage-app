@@ -3,7 +3,7 @@ import { theme } from "../../global/styles";
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,  
+    flex: 1,
   },
   footer: {
     paddingHorizontal: 16,
@@ -14,8 +14,13 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    backgroundColor: theme.colors.success,
     borderRadius: 8,
+  },
+  activeButton: {
+    backgroundColor: theme.colors.success,
+  },
+  disabledButton: {
+    backgroundColor: theme.colors.neutral100,
   },
   next: {
     fontFamily: theme.fonts.medium,

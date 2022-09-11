@@ -1,3 +1,4 @@
+import { useFocusEffect } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 
@@ -28,6 +29,12 @@ export function Home() {
       await fetch();
     })();
   }, []);
+
+  useFocusEffect(() => {
+    (async () => {
+      await fetch();
+    })();
+  });
 
   const fetch = async () => {
     const response = await api.get("/home");
