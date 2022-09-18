@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect } from "react";
 import { useAuth } from "../contexts/AuthProvider";
 import * as localStorage from "../services/auth.storage";
+import AppRoutes from "./app.routes";
 import AuthRoutes from "./auth.routes";
-import MainRoutes from "./main.routes";
 
 const Routes: React.FC = () => {
   const { user, setUser } = useAuth();
@@ -22,7 +22,7 @@ const Routes: React.FC = () => {
   }, []);
 
   if (user) {
-    return <MainRoutes />;
+    return <AppRoutes />;
   }
   return <AuthRoutes />;
 };

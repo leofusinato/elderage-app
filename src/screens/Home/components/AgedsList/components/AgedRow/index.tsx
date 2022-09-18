@@ -4,15 +4,27 @@ import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { styles } from "./styles";
 import { theme } from "../../../../../../global/styles";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { AppStackParamList } from "../../../../../../global/route.types";
 
 type Props = {
+  key: string;
   name: string;
   gender: string;
 };
 
-export function AgedRow({ name, gender }: Props) {
+export function AgedRow({ key, name, gender }: Props) {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<AppStackParamList, "Home">>();
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => {
+        navigation.navigate("AgedDetails", { id: key });
+      }}
+    >
       <View style={styles.left}>
         <View style={styles.image}>
           <MaterialCommunityIcons

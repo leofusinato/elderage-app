@@ -4,7 +4,7 @@ import { getAuth } from "./auth.storage";
 export const api = axios.create();
 
 api.interceptors.request.use(async (config) => {
-  config.baseURL = "http://192.168.2.3:3333";
+  config.baseURL = "http://192.168.2.16:3333";
   if (config.headers) {
     config.headers["Content-Type"] = "application/json";
     const auth = await getAuth();

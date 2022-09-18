@@ -2,6 +2,7 @@ import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export type AppStackParamList = {
+  MainHome: undefined;
   Home: undefined;
   Calendar: undefined;
   AddAged: undefined;
@@ -17,6 +18,9 @@ export type AppStackParamList = {
   };
   NewPassword: {
     email: string;
+  };
+  AgedDetails: {
+    id: string;
   };
 };
 
@@ -61,4 +65,9 @@ export type CalendarNavigationProps = {
 
 export type AddAgedNavigationProps = {
   navigation: NativeStackNavigationProp<AppStackParamList, "AddAged">;
+};
+
+export type AgedDetailsNavigationProps = {
+  route: RouteProp<AppStackParamList, "AgedDetails">;
+  navigation: NativeStackNavigationProp<AppStackParamList, "AgedDetails">;
 };
