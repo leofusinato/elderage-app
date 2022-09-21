@@ -13,10 +13,13 @@ import { StyleSheet, View } from "react-native";
 import { theme } from "../global/styles";
 import { NewAged } from "../screens/NewAged";
 import NewAgedRoutes from "./newAged.routes";
+import { useNewAged } from "../contexts/NewAgedProvider";
 
 const MainStack = createBottomTabNavigator();
 
 const MainRoutes: React.FC = () => {
+  const { setNewAged } = useNewAged();
+
   return (
     <MainStack.Navigator
       initialRouteName="Home"
@@ -69,6 +72,11 @@ const MainRoutes: React.FC = () => {
       <MainStack.Screen
         name="NewAged"
         component={NewAgedRoutes}
+        listeners={{
+          tabPress: () => {
+            setNewAged(null);
+          },
+        }}
         options={{
           tabBarStyle: {
             display: "none",

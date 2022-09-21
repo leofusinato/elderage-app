@@ -9,12 +9,12 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AppStackParamList } from "../../../../../../global/route.types";
 
 type Props = {
-  key: string;
+  id: string;
   name: string;
   gender: string;
 };
 
-export function AgedRow({ key, name, gender }: Props) {
+export function AgedRow({ id, name, gender }: Props) {
   const navigation =
     useNavigation<NativeStackNavigationProp<AppStackParamList, "Home">>();
 
@@ -22,7 +22,7 @@ export function AgedRow({ key, name, gender }: Props) {
     <TouchableOpacity
       style={styles.container}
       onPress={() => {
-        navigation.navigate("AgedDetails", { id: key });
+        navigation.navigate("AgedDetails", { id });
       }}
     >
       <View style={styles.left}>
