@@ -42,8 +42,9 @@ export default function Login() {
           const {
             user: { id, name, email },
             token,
+            refresh_token,
           } = response.data;
-          await setAuth({ id, name, email, token });
+          await setAuth({ id, name, email, token, refresh_token });
           setUser({ id, name, email, token });
         }
       } catch {

@@ -24,5 +24,5 @@ export async function isAuthenticated(): Promise<boolean> {
 }
 
 export async function clear(): Promise<void> {
-  keysToClear.map(async (key) => await AsyncStorage.removeItem(key));
+  keysToClear.forEach(async (key) => await AsyncStorage.removeItem(key));
 }

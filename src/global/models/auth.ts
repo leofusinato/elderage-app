@@ -8,6 +8,11 @@ export type AuthLoginResponse = {
     created_at: string;
   };
   token: string;
+  refresh_token: string;
+};
+
+export type RefreshTokenResponse = {
+  token: string;
 };
 
 export type AuthStorageData = {
@@ -15,4 +20,5 @@ export type AuthStorageData = {
   name: string;
   email: string;
   token: string;
+  refresh_token: string;
 };
