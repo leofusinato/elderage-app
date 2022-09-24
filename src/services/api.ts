@@ -15,10 +15,10 @@ export const refreshTokenSignIn = async (): Promise<void> => {
     }
 
     const { data } = await api.post<RefreshTokenResponse>("/refreshToken", {
-      refresh_token: user.refresh_token,
+      refresh_token: user.refreshToken,
     });
 
-    await setAuth({ ...user, refresh_token: data.token });
+    await setAuth({ ...user, token: data.token });
   } catch (e) {
     if (e instanceof AxiosError && e.isAxiosError && e?.response?.data) {
       const [error] = e.response.data;
@@ -44,7 +44,7 @@ const authInterceptor = async (config: AxiosRequestConfig) => {
 const refreshAuthInterceptor = async (error: AxiosError) => {
   if (error.response?.status === 401) {
     await refreshTokenSignIn();
-    await api.request(error.config);
+    return await api.request(error.config);
   }
   return Promise.reject(error);
 };
