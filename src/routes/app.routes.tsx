@@ -4,6 +4,8 @@ import MainRoutes from "./main.routes";
 import { AppStackParamList } from "../global/route.types";
 import { AgedDetails } from "../screens/AgedDetails";
 import { NewAgedProvider } from "../contexts/NewAgedProvider";
+import { MedicationsList } from "../screens/AgedDetails/screens/MedicationsList";
+import { ContactsList } from "../screens/AgedDetails/screens/ContactsList";
 
 const { Navigator, Screen } = createNativeStackNavigator<AppStackParamList>();
 
@@ -20,6 +22,20 @@ const AppRoutes: React.FC = () => (
       <Screen
         name="AgedDetails"
         component={AgedDetails}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Screen
+        name="MedicationsList"
+        component={MedicationsList}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Screen
+        name="ContactsList"
+        component={ContactsList}
         options={{
           headerShown: false,
         }}

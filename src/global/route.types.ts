@@ -1,5 +1,7 @@
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { ContactProps } from "./models/contact";
+import { MedicationProps } from "./models/medication";
 
 export type AppStackParamList = {
   MainHome: undefined;
@@ -21,6 +23,20 @@ export type AppStackParamList = {
   };
   AgedDetails: {
     id: string;
+  };
+  MedicationsList: {
+    list: MedicationProps[];
+    aged: {
+      name: string;
+      gender: string;
+    };
+  };
+  ContactsList: {
+    list: ContactProps[];
+    aged: {
+      name: string;
+      gender: string;
+    };
   };
 };
 
@@ -70,4 +86,14 @@ export type AddAgedNavigationProps = {
 export type AgedDetailsNavigationProps = {
   route: RouteProp<AppStackParamList, "AgedDetails">;
   navigation: NativeStackNavigationProp<AppStackParamList, "AgedDetails">;
+};
+
+export type MedicationsListNavigationProps = {
+  route: RouteProp<AppStackParamList, "MedicationsList">;
+  navigation: NativeStackNavigationProp<AppStackParamList, "MedicationsList">;
+};
+
+export type ContactsListNavigationProps = {
+  route: RouteProp<AppStackParamList, "ContactsList">;
+  navigation: NativeStackNavigationProp<AppStackParamList, "ContactsList">;
 };

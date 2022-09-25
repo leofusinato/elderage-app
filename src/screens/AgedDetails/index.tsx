@@ -36,9 +36,31 @@ export function AgedDetails({ navigation, route }: AgedDetailsNavigationProps) {
     <View style={styles.container}>
       <Header data={data} />
       <View style={styles.main}>
-        <ItemRow image={MedicineIcon} description="Medicamentos" />
-        <ItemRow image={ContactsIcon} description="Contatos" />
-        <ItemRow image={ProfileIcon} description="Perfil idoso" />
+        <ItemRow
+          image={MedicineIcon}
+          description="Medicamentos"
+          onPress={() =>
+            navigation.navigate("MedicationsList", {
+              list: data.medications,
+              aged: { name: data.name, gender: data.gender },
+            })
+          }
+        />
+        <ItemRow
+          image={ContactsIcon}
+          description="Contatos"
+          onPress={() =>
+            navigation.navigate("ContactsList", {
+              list: data.contacts,
+              aged: { name: data.name, gender: data.gender },
+            })
+          }
+        />
+        <ItemRow
+          image={ProfileIcon}
+          description="Perfil idoso"
+          onPress={() => {}}
+        />
       </View>
     </View>
   );

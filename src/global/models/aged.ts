@@ -1,3 +1,4 @@
+import { ContactProps } from "./contact";
 import { MedicationProps } from "./medication";
 
 export type AgedProps = {
@@ -10,5 +11,6 @@ export type AgedProps = {
   state: string;
   created_at: string;
   user_id: string;
-  medications?: MedicationProps[];
+  medications: MedicationProps[];
+  contacts: ContactProps[];
 };

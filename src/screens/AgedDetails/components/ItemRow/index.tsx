@@ -12,11 +12,12 @@ import { styles } from "./styles";
 type Props = {
   image: ImageSourcePropType;
   description: string;
+  onPress: () => void;
 };
 
-export function ItemRow({ image, description }: Props) {
+export function ItemRow({ image, description, onPress }: Props) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Row>
         <Image source={image} />
         <Text style={styles.description}>{description}</Text>
