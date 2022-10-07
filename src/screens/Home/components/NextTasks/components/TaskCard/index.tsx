@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Menu, MenuItem } from "react-native-material-menu";
 import { NextTaskProps } from "../../../../../../global/models/task";
 
 import { styles } from "./styles";
 import { theme } from "../../../../../../global/styles";
-import moment from "moment";
 import { formatTime } from "../../../../../../utils/date";
 
 type Props = {
@@ -16,6 +16,8 @@ type Props = {
 };
 
 export function TaskCard({ data, first }: Props) {
+  const [visible, setVisible] = useState(false);
+
   return (
     <TouchableOpacity
       style={[styles.container, first ? styles.firstContainer : {}]}
@@ -51,15 +53,21 @@ export function TaskCard({ data, first }: Props) {
         >
           {data.description}
         </Text>
-        <TouchableOpacity
-          hitSlop={{ bottom: 10, left: 10, right: 10, top: 10 }}
+        <Menu
+          visible={visible}
+          anchor={
+            <Text onPress={() => setVisible(true)}>
+              <Entypo
+                name="dots-three-vertical"
+                size={16}
+                color={first ? theme.colors.white : theme.colors.neutral500}
+              />
+            </Text>
+          }
+          onRequestClose={() => setVisible(false)}
         >
-          <Entypo
-            name="dots-three-vertical"
-            size={16}
-            color={first ? theme.colors.white : theme.colors.neutral500}
-          />
-        </TouchableOpacity>
+          <MenuItem onPress={() => setVisible(false)}>Concluir</MenuItem>
+        </Menu>
       </View>
     </TouchableOpacity>
   );
