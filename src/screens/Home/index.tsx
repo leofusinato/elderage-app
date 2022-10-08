@@ -30,11 +30,11 @@ export function Home() {
     })();
   }, []);
 
-  useFocusEffect(() => {
-    (async () => {
-      await fetch();
-    })();
-  });
+  // useFocusEffect(() => {
+  //   (async () => {
+  //     await fetch();
+  //   })();
+  // });
 
   const fetch = async () => {
     const response = await api.get("/home");

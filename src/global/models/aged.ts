@@ -10,7 +10,7 @@ export type AgedProps = {
   city: string;
   state: string;
   created_at: string;
-  user_id: string;
   medications: MedicationProps[];
   contacts: ContactProps[];
+  owner: boolean;
 };

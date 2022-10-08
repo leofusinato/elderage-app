@@ -3,6 +3,7 @@ import { AgedProps } from "./aged";
 export type NextTaskProps = {
   aged: AgedProps;
   schedule?: string;
+  schedule_id: string;
   remaining?: number;
 } & TaskProps;
 

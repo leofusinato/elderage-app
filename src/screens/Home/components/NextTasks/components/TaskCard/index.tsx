@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Menu, MenuItem } from "react-native-material-menu";
 import { NextTaskProps } from "../../../../../../global/models/task";
 
 import { styles } from "./styles";
 import { theme } from "../../../../../../global/styles";
 import { formatTime } from "../../../../../../utils/date";
+import { TaskMenu } from "../../../../../../components/TaskMenu";
 
 type Props = {
   data: NextTaskProps;
@@ -53,21 +52,13 @@ export function TaskCard({ data, first }: Props) {
         >
           {data.description}
         </Text>
-        <Menu
+        <TaskMenu
+          data={data}
           visible={visible}
-          anchor={
-            <Text onPress={() => setVisible(true)}>
-              <Entypo
-                name="dots-three-vertical"
-                size={16}
-                color={first ? theme.colors.white : theme.colors.neutral500}
-              />
-            </Text>
-          }
-          onRequestClose={() => setVisible(false)}
-        >
-          <MenuItem onPress={() => setVisible(false)}>Concluir</MenuItem>
-        </Menu>
+          onClose={() => setVisible(false)}
+          onOpen={() => setVisible(true)}
+          color={first ? theme.colors.white : theme.colors.neutral500}
+        />
       </View>
     </TouchableOpacity>
   );

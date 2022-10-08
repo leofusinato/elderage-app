@@ -60,7 +60,7 @@ export function Calendar() {
             />
           ))}
           {tasks?.done.map((task, index) => (
-            <Card key={index} done />
+            <Card key={index} done description={task.details} />
           ))}
         </View>
       </Loading>
