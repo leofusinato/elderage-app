@@ -12,7 +12,7 @@ import { styles } from "./styles";
 
 type TasksProps = {
   done: TaskProps[];
-  pending: NextTaskProps[];
+  pending: TaskProps[];
 };
 
 export function Calendar() {
@@ -20,8 +20,8 @@ export function Calendar() {
   const [loading, setLoading] = useState(false);
 
   const getTasks = async (date: Date) => {
-    setLoading(true);
     try {
+      setLoading(true);
       const formattedDate = formatDateToApi(date);
       const response = await api.get<TasksProps>(
         `/tasks/date/${formattedDate}`
@@ -29,8 +29,9 @@ export function Calendar() {
       setTasks(response.data);
     } catch {
       Alert.alert("Ops!", "Erro ao buscar as tarefas. Tente novamente");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -45,23 +46,11 @@ export function Calendar() {
       <Loading loading={loading}>
         <View style={styles.content}>
           {tasks?.pending.map((task, index) => (
-            <Card
-              agedName={task.aged.name}
-              description={task.details}
-              gender={task.aged.gender}
-              local={task.description}
-              timeType={task.time_type}
-              time={
-                task.time_type === 1
-                  ? task.remaining
-                  : formatTime(task.schedule)
-              }
-              key={index}
-            />
+            <Card data={task} done={false} key={index} />
           ))}
-          {tasks?.done.map((task, index) => (
-            <Card key={index} done description={task.details} />
-          ))}
+          {/* {tasks?.done.map((task, index) => (
+            <Card key={index} done description={task.medication.details} />
+          ))} */}
         </View>
       </Loading>
     </ScrollView>

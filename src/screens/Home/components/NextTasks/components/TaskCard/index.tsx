@@ -12,9 +12,10 @@ import { TaskMenu } from "../../../../../../components/TaskMenu";
 type Props = {
   data: NextTaskProps;
   first: boolean;
+  onDone: () => Promise<void>;
 };
 
-export function TaskCard({ data, first }: Props) {
+export function TaskCard({ data, first, onDone }: Props) {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -57,6 +58,7 @@ export function TaskCard({ data, first }: Props) {
           visible={visible}
           onClose={() => setVisible(false)}
           onOpen={() => setVisible(true)}
+          onDone={onDone}
           color={first ? theme.colors.white : theme.colors.neutral500}
         />
       </View>

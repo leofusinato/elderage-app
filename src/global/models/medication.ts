@@ -6,7 +6,7 @@ export type MedicationProps = {
   user_id: string;
   description: string;
   details: string;
-  time_type: string;
+  time_type: number;
   time_description: string;
   created_at: string;
   aged: AgedProps;

@@ -11,10 +11,18 @@ type Props = {
   visible: boolean;
   onClose: () => void;
   onOpen: () => void;
+  onDone: () => Promise<void>;
   color?: string;
 };
 
-export function TaskMenu({ data, visible, onClose, onOpen, color }: Props) {
+export function TaskMenu({
+  data,
+  visible,
+  onClose,
+  onOpen,
+  color,
+  onDone,
+}: Props) {
   const completeTask = async () => {
     try {
       let body: any = {
@@ -25,6 +33,7 @@ export function TaskMenu({ data, visible, onClose, onOpen, color }: Props) {
         body.schedule_id = data.schedule_id;
       }
       await api.post("/checkin", body);
+      await onDone();
       Alert.alert("Ops", "Ok");
     } catch {
       Alert.alert("Ops", "Houve um erro ao completar a tarefa");

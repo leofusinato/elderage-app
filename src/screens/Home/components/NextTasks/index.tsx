@@ -1,21 +1,25 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import React from "react";
+import React, { useState } from "react";
 
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { NextTaskProps } from "../../../../global/models/task";
 import { AppStackParamList } from "../../../../global/route.types";
+import { api } from "../../../../services/api";
+import { formatDateToApi } from "../../../../utils/date";
 import { TaskCard } from "./components/TaskCard";
 
 import { styles } from "./styles";
 
 type Props = {
   data: NextTaskProps[];
+  onDone: () => Promise<void>;
 };
 
-export function NextTasks({ data }: Props) {
+export function NextTasks({ data, onDone }: Props) {
   const navigation =
     useNavigation<NativeStackNavigationProp<AppStackParamList, "Home">>();
+
   return (
     <View>
       <View style={styles.header}>
@@ -27,7 +31,14 @@ export function NextTasks({ data }: Props) {
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {data.map((value, index) => {
-          return <TaskCard data={value} key={index} first={index == 0} />;
+          return (
+            <TaskCard
+              data={value}
+              key={index}
+              first={index == 0}
+              onDone={onDone}
+            />
+          );
         })}
       </ScrollView>
     </View>

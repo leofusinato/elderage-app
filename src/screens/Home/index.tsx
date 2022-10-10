@@ -52,7 +52,7 @@ export function Home() {
       <StatusBar backgroundColor={theme.colors.white} />
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <Header />
-        <NextTasks data={data.nextTasks} />
+        <NextTasks data={data.nextTasks} onDone={async () => await fetch()} />
         <RecentlyCompleted data={data.tasks} />
         <AgedsList data={data.ageds} />
       </ScrollView>

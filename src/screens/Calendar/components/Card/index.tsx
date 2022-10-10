@@ -6,26 +6,15 @@ import { Entypo } from "@expo/vector-icons";
 
 import { theme } from "../../../../global/styles";
 import { styles } from "./styles";
+import { TaskMenu } from "../../../../components/TaskMenu";
+import { TaskProps } from "../../../../global/models/task";
 
 type Props = {
-  gender: string;
-  agedName: string;
-  description: string;
-  local: string;
-  time?: string | number;
-  timeType: number;
-  done?: boolean;
+  data: TaskProps;
+  done: boolean;
 };
 
-export function Card({
-  gender,
-  agedName,
-  description,
-  local,
-  time,
-  timeType,
-  done,
-}: Props) {
+export function Card({ data, done }: Props) {
   const mainColor = useMemo(() => {
     return done ? theme.colors.success : theme.colors.primary;
   }, [done]);
@@ -39,25 +28,27 @@ export function Card({
         <View style={styles.left}>
           <View style={styles.image}>
             <MaterialCommunityIcons
-              name={gender === "M" ? "face-man" : "face-woman"}
+              name={data.aged.gender === "M" ? "face-man" : "face-woman"}
               size={30}
               color={mainColor}
             />
           </View>
-          <Text style={styles.name}>{agedName}</Text>
+          <Text style={styles.name}>{data.aged.name}</Text>
         </View>
         <View style={styles.right}>
           <FontAwesome5
-            name={timeType === 1 ? "capsules" : "clock"}
+            name={data.medication.time_type === 1 ? "capsules" : "clock"}
             size={15}
             color={mainColor}
           />
-          <Text style={[styles.hour, { color: mainColor }]}>{time}</Text>
+          <Text style={[styles.hour, { color: mainColor }]}>
+            {data.schedule}
+          </Text>
         </View>
       </View>
       <View style={styles.descriptionContainer}>
         <Text style={[styles.description, { color: mainColor }]}>
-          {description}
+          {data.medication.details}
         </Text>
       </View>
       <View style={styles.footer}>
@@ -67,9 +58,10 @@ export function Card({
             size={18}
             color={theme.colors.white}
           />
-          <Text style={styles.local}>{local}</Text>
+          <Text style={styles.local}>{data.medication.description}</Text>ß
         </View>
-        {!done && (
+        {/* {!done && <TaskMenu data={task} />} */}
+        {/* {!done && (
           <TouchableOpacity
             hitSlop={{ top: 20, left: 20, bottom: 20, right: 20 }}
           >
@@ -79,7 +71,7 @@ export function Card({
               color={theme.colors.white}
             />
           </TouchableOpacity>
-        )}
+        )} */}
       </View>
     </TouchableOpacity>
   );
