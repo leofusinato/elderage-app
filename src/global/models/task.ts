@@ -25,6 +25,7 @@ export type TaskProps = {
   medication: MedicationProps;
   schedule: string;
   schedule_id: string;
+  remaining?: number;
 };
 
 export type ScheduleProps = {

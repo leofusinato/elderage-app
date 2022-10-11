@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { View, ScrollView, Alert } from "react-native";
 import { Loading } from "../../components/Loading";
-import { NextTaskProps, TaskProps } from "../../global/models/task";
+import { TaskProps } from "../../global/models/task";
 import { api } from "../../services/api";
 import { formatDateToApi, formatTime } from "../../utils/date";
 import { Card } from "./components/Card";
@@ -18,6 +18,7 @@ type TasksProps = {
 export function Calendar() {
   const [tasks, setTasks] = useState<TasksProps | null>(null);
   const [loading, setLoading] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
   const getTasks = async (date: Date) => {
     try {
@@ -34,6 +35,11 @@ export function Calendar() {
     }
   };
 
+  const handleChangeDate = async (date: Date) => {
+    setSelectedDate(date);
+    await getTasks(date);
+  };
+
   useEffect(() => {
     (async () => {
       await getTasks(new Date());
@@ -42,15 +48,19 @@ export function Calendar() {
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <Header onChangeDate={async (date) => await getTasks(date)} />
+      <Header onChangeDate={async (date) => await handleChangeDate(date)} />
       <Loading loading={loading}>
         <View style={styles.content}>
           {tasks?.pending.map((task, index) => (
-            <Card data={task} done={false} key={index} />
+            <Card
+              data={task}
+              key={index}
+              onDone={async () => await getTasks(selectedDate)}
+            />
           ))}
-          {/* {tasks?.done.map((task, index) => (
-            <Card key={index} done description={task.medication.details} />
-          ))} */}
+          {tasks?.done.map((task, index) => (
+            <Card key={index} done data={task} />
+          ))}
         </View>
       </Loading>
     </ScrollView>

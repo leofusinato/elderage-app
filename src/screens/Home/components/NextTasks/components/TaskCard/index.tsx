@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { NextTaskProps } from "../../../../../../global/models/task";
+import { TaskProps } from "../../../../../../global/models/task";
 
 import { styles } from "./styles";
 import { theme } from "../../../../../../global/styles";
@@ -10,7 +10,7 @@ import { formatTime } from "../../../../../../utils/date";
 import { TaskMenu } from "../../../../../../components/TaskMenu";
 
 type Props = {
-  data: NextTaskProps;
+  data: TaskProps;
   first: boolean;
   onDone: () => Promise<void>;
 };
@@ -33,13 +33,15 @@ export function TaskCard({ data, first, onDone }: Props) {
         </View>
         <View style={styles.headerInfoContainer}>
           <FontAwesome5
-            name={data.time_type === 1 ? "capsules" : "clock"}
+            name={data.medication.time_type === 1 ? "capsules" : "clock"}
             size={12}
             color={theme.colors.primary}
             style={styles.clock}
           />
           <Text style={styles.hour}>
-            {data.time_type === 1 ? data.remaining : formatTime(data.schedule)}
+            {data.medication.time_type === 1
+              ? data.remaining
+              : formatTime(data.schedule)}
           </Text>
         </View>
       </View>
@@ -51,7 +53,7 @@ export function TaskCard({ data, first, onDone }: Props) {
           numberOfLines={1}
           style={[styles.description, first ? styles.firstDescription : {}]}
         >
-          {data.description}
+          {data.medication.description}
         </Text>
         <TaskMenu
           data={data}

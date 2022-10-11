@@ -2,12 +2,12 @@ import { Entypo } from "@expo/vector-icons";
 import React from "react";
 import { Alert, Text } from "react-native";
 import { Menu, MenuItem } from "react-native-material-menu";
-import { NextTaskProps } from "../../global/models/task";
+import { TaskProps } from "../../global/models/task";
 import { theme } from "../../global/styles";
 import { api } from "../../services/api";
 
 type Props = {
-  data: NextTaskProps;
+  data: TaskProps;
   visible: boolean;
   onClose: () => void;
   onOpen: () => void;
@@ -26,15 +26,14 @@ export function TaskMenu({
   const completeTask = async () => {
     try {
       let body: any = {
-        medication_id: data.id,
+        medication_id: data.medication.id,
         date_hour_applied: new Date(),
       };
-      if (data.time_type === 2) {
+      if (data.medication.time_type === 2) {
         body.schedule_id = data.schedule_id;
       }
       await api.post("/checkin", body);
       await onDone();
-      Alert.alert("Ops", "Ok");
     } catch {
       Alert.alert("Ops", "Houve um erro ao completar a tarefa");
     }

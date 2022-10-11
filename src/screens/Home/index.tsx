@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import { AgedProps } from "../../global/models/aged";
 import { CheckinMedicationProps } from "../../global/models/checkin";
-import { NextTaskProps } from "../../global/models/task";
+import { TaskProps } from "../../global/models/task";
 import { theme } from "../../global/styles";
 import { api } from "../../services/api";
 import { AgedsList } from "./components/AgedsList";
@@ -18,7 +18,7 @@ import { styles } from "./styles";
 type HomeDataProps = {
   ageds: AgedProps[];
   tasks: CheckinMedicationProps[];
-  nextTasks: NextTaskProps[];
+  nextTasks: TaskProps[];
 };
 
 export function Home() {

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -8,13 +8,17 @@ import { theme } from "../../../../global/styles";
 import { styles } from "./styles";
 import { TaskMenu } from "../../../../components/TaskMenu";
 import { TaskProps } from "../../../../global/models/task";
+import { formatTime } from "../../../../utils/date";
 
 type Props = {
   data: TaskProps;
-  done: boolean;
+  done?: boolean;
+  onDone?: () => Promise<void>;
 };
 
-export function Card({ data, done }: Props) {
+export function Card({ data, done = false, onDone }: Props) {
+  const [menuVisible, setMenuVisible] = useState(false);
+
   const mainColor = useMemo(() => {
     return done ? theme.colors.success : theme.colors.primary;
   }, [done]);
@@ -42,7 +46,7 @@ export function Card({ data, done }: Props) {
             color={mainColor}
           />
           <Text style={[styles.hour, { color: mainColor }]}>
-            {data.schedule}
+            {formatTime(data.schedule)}
           </Text>
         </View>
       </View>
@@ -58,9 +62,21 @@ export function Card({ data, done }: Props) {
             size={18}
             color={theme.colors.white}
           />
-          <Text style={styles.local}>{data.medication.description}</Text>ß
+          <Text style={styles.local}>{data.medication.description}</Text>
         </View>
-        {/* {!done && <TaskMenu data={task} />} */}
+        {!done && (
+          <TaskMenu
+            visible={menuVisible}
+            onOpen={() => setMenuVisible(true)}
+            onClose={() => setMenuVisible(false)}
+            data={data}
+            onDone={async () => {
+              if (onDone) {
+                await onDone();
+              }
+            }}
+          />
+        )}
         {/* {!done && (
           <TouchableOpacity
             hitSlop={{ top: 20, left: 20, bottom: 20, right: 20 }}

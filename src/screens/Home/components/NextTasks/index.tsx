@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 
 import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { NextTaskProps } from "../../../../global/models/task";
+import { TaskProps } from "../../../../global/models/task";
 import { AppStackParamList } from "../../../../global/route.types";
 import { api } from "../../../../services/api";
 import { formatDateToApi } from "../../../../utils/date";
@@ -12,7 +12,7 @@ import { TaskCard } from "./components/TaskCard";
 import { styles } from "./styles";
 
 type Props = {
-  data: NextTaskProps[];
+  data: TaskProps[];
   onDone: () => Promise<void>;
 };
 

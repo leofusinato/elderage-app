@@ -3,7 +3,7 @@ import { RefreshTokenResponse } from "../global/models/auth";
 import { getAuth, setAuth } from "./auth.storage";
 
 export const api = axios.create({
-  baseURL: "http://192.168.2.9:3333",
+  baseURL: "http://192.168.2.4:3333",
 });
 
 export const refreshTokenSignIn = async (): Promise<void> => {
