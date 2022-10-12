@@ -5,6 +5,7 @@ import { Menu, MenuItem } from "react-native-material-menu";
 import { TaskProps } from "../../global/models/task";
 import { theme } from "../../global/styles";
 import { api } from "../../services/api";
+import { getLocaledDate } from "../../utils/date";
 
 type Props = {
   data: TaskProps;
@@ -27,7 +28,7 @@ export function TaskMenu({
     try {
       let body: any = {
         medication_id: data.medication.id,
-        date_hour_applied: new Date(),
+        date_hour_applied: getLocaledDate(new Date()),
       };
       if (data.medication.time_type === 2) {
         body.schedule_id = data.schedule_id;

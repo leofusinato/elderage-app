@@ -22,10 +22,15 @@ const everyDays = [
 
 export const years = () => {
   let list = [];
-  for (let i = 1920; i <= new Date().getFullYear(); i++) {
+  for (let i = 1900; i <= new Date().getFullYear(); i++) {
     list.push(String(i));
   }
   return list;
+};
+
+export const getLocaledDate = (date: Date) => {
+  date.setHours(date.getHours() - 3);
+  return date;
 };
 
 export const daysByMonth = (month: number) => {

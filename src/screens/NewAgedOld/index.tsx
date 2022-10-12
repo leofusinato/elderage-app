@@ -1,9 +1,9 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import React, { useMemo, useState } from "react";
 
-import { View, Text, TouchableOpacity, Alert, FlatList } from "react-native";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { useNewAged } from "../../contexts/NewAgedProvider";
 import { AppStackParamList } from "../../global/route.types";
 import { api } from "../../services/api";

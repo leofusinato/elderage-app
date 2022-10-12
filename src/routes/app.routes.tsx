@@ -6,6 +6,7 @@ import { AgedDetails } from "../screens/AgedDetails";
 import { NewAgedProvider } from "../contexts/NewAgedProvider";
 import { MedicationsList } from "../screens/AgedDetails/screens/MedicationsList";
 import { ContactsList } from "../screens/AgedDetails/screens/ContactsList";
+import { NewContact } from "../screens/NewContact";
 
 const { Navigator, Screen } = createNativeStackNavigator<AppStackParamList>();
 
@@ -36,6 +37,13 @@ const AppRoutes: React.FC = () => (
       <Screen
         name="ContactsList"
         component={ContactsList}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Screen
+        name="NewContact"
+        component={NewContact}
         options={{
           headerShown: false,
         }}

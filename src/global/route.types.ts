@@ -34,9 +34,13 @@ export type AppStackParamList = {
   ContactsList: {
     list: ContactProps[];
     aged: {
+      id: string;
       name: string;
       gender: string;
     };
+  };
+  NewContact: {
+    agedId: string;
   };
 };
 
@@ -81,6 +85,11 @@ export type CalendarNavigationProps = {
 
 export type AddAgedNavigationProps = {
   navigation: NativeStackNavigationProp<AppStackParamList, "AddAged">;
+};
+
+export type NewContactNavigationProps = {
+  route: RouteProp<AppStackParamList, "NewContact">;
+  navigation: NativeStackNavigationProp<AppStackParamList, "NewContact">;
 };
 
 export type AgedDetailsNavigationProps = {

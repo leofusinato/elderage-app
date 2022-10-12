@@ -6,11 +6,16 @@ import { theme } from "../../../../global/styles";
 
 type Props = {
   description: string;
+  onPress: () => void;
 };
 
-export function AddButton({ description }: Props) {
+export function AddButton({ description, onPress }: Props) {
   return (
-    <TouchableOpacity style={styles.button} activeOpacity={0.5}>
+    <TouchableOpacity
+      style={styles.button}
+      activeOpacity={0.5}
+      onPress={onPress}
+    >
       <Ionicons
         name="add-circle-outline"
         size={24}

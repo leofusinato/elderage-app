@@ -52,7 +52,7 @@ export function AgedDetails({ navigation, route }: AgedDetailsNavigationProps) {
           onPress={() =>
             navigation.navigate("ContactsList", {
               list: data.contacts,
-              aged: { name: data.name, gender: data.gender },
+              aged: { id: data.id, name: data.name, gender: data.gender },
             })
           }
         />
