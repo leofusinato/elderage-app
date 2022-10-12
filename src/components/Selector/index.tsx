@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleProp, ViewStyle } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
-import { theme } from "../../../../global/styles";
+import { theme } from "../../global/styles";
 
 type Props = {
   placeholder: string;

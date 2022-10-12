@@ -27,6 +27,7 @@ export type AppStackParamList = {
   MedicationsList: {
     list: MedicationProps[];
     aged: {
+      id: string;
       name: string;
       gender: string;
     };
@@ -40,6 +41,9 @@ export type AppStackParamList = {
     };
   };
   NewContact: {
+    agedId: string;
+  };
+  NewMedication: {
     agedId: string;
   };
 };
@@ -90,6 +94,11 @@ export type AddAgedNavigationProps = {
 export type NewContactNavigationProps = {
   route: RouteProp<AppStackParamList, "NewContact">;
   navigation: NativeStackNavigationProp<AppStackParamList, "NewContact">;
+};
+
+export type NewMedicationNavigationProps = {
+  route: RouteProp<AppStackParamList, "NewMedication">;
+  navigation: NativeStackNavigationProp<AppStackParamList, "NewMedication">;
 };
 
 export type AgedDetailsNavigationProps = {

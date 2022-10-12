@@ -3,7 +3,7 @@ import { ActivityIndicator, Alert, Text, View } from "react-native";
 
 import { Header } from "./components/Header";
 import LoginButton from "../Login/components/LoginButton";
-import AuthInput from "../../components/Inputs/AuthInput";
+import Input from "../../components/Inputs/Input";
 
 import { RecoveryPasswordNavigationProps } from "../../global/route.types";
 import { api } from "../../services/api";
@@ -59,7 +59,7 @@ export function NewPassword({
         <Text style={styles.newPassword}>{`Informe sua nova senha`}</Text>
 
         <View style={styles.content}>
-          <AuthInput
+          <Input
             placeholder="Digite sua nova senha"
             leftIcon="lock"
             isPassword

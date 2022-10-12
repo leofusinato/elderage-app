@@ -5,6 +5,7 @@ import { styles } from "./styles";
 import TextInputMask, {
   TextInputMaskProps,
 } from "react-native-text-input-mask";
+import { theme } from "../../../global/styles";
 
 type Props = {
   placeholder?: string;
@@ -13,7 +14,7 @@ type Props = {
   isPassword?: boolean;
 } & TextInputMaskProps;
 
-export default function AuthInput({
+export default function Input({
   placeholder = "",
   leftIcon,
   style,
@@ -28,6 +29,7 @@ export default function AuthInput({
       <TextInputMask
         placeholder={placeholder}
         style={styles.input}
+        placeholderTextColor={theme.colors.neutral300}
         secureTextEntry={isPassword && hidePassword}
         {...props}
       />

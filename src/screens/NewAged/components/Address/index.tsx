@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 import { Text, View } from "react-native";
-import { Selector } from "../../../../components/DateSelector/components/Selector";
-import AuthInput from "../../../../components/Inputs/AuthInput";
+import Input from "../../../../components/Inputs/Input";
 import { Row } from "../../../../components/Row";
+import { Selector } from "../../../../components/Selector";
 import { useNewAged } from "../../../../contexts/NewAgedProvider";
 import { theme } from "../../../../global/styles";
 import { states } from "../../../../utils/address";
@@ -16,14 +16,14 @@ export function Address() {
   return (
     <View style={styles.container}>
       <Text style={styles.address}>Insira o endereço de moradia do idoso</Text>
-      <AuthInput
+      <Input
         leftIcon="home"
         onChangeText={(address) => setProps({ address })}
         style={{ backgroundColor: theme.colors.white, borderWidth: 0 }}
       />
       <Text style={styles.address}>Insira a cidade e o estado</Text>
       <Row>
-        <AuthInput
+        <Input
           onChangeText={(city) => setProps({ city })}
           style={{
             backgroundColor: theme.colors.white,

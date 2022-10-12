@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { View, Text, ScrollView, TouchableOpacity, Alert } from "react-native";
-import AuthInput from "../../components/Inputs/AuthInput";
+import { Header } from "../../components/Header";
+import Input from "../../components/Inputs/Input";
 import { NewContactNavigationProps } from "../../global/route.types";
 
 import { theme } from "../../global/styles";
@@ -33,15 +34,16 @@ export function NewContact({ navigation, route }: NewContactNavigationProps) {
 
   return (
     <>
+      <Header title="Novo contato" />
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.text}>Nome do contato</Text>
-        <AuthInput
+        <Input
           value={name}
           onChangeText={(text) => setName(text)}
           style={{ backgroundColor: theme.colors.white, borderWidth: 0 }}
         />
         <Text style={styles.text}>Telefone</Text>
-        <AuthInput
+        <Input
           placeholder="(00) 000000000"
           onChangeText={(phone) => {
             setPhone(phone);

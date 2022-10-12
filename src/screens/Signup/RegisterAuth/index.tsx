@@ -21,7 +21,7 @@ import {
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { theme } from "../../../global/styles";
 import { styles } from "./styles";
-import AuthInput from "../../../components/Inputs/AuthInput";
+import Input from "../../../components/Inputs/Input";
 import { PasswordValidator } from "./components/PasswordValidator";
 import { api } from "../../../services/api";
 
@@ -94,14 +94,14 @@ export function RegisterAuth({ route }: RegisterAuthNavigationProps) {
           }}
         >
           <Text style={styles.almost}>Quase lá...</Text>
-          <AuthInput
+          <Input
             placeholder="Nos informe o seu e-mail"
             leftIcon="user"
             value={email}
             onChangeText={(email) => setEmail(email)}
             keyboardType="email-address"
           />
-          <AuthInput
+          <Input
             placeholder="Crie uma senha"
             leftIcon="lock"
             isPassword

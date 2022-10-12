@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
-import AuthInput from "../../../../components/Inputs/AuthInput";
+import Input from "../../../../components/Inputs/Input";
 import { useNewAged } from "../../../../contexts/NewAgedProvider";
 import { theme } from "../../../../global/styles";
 
@@ -13,13 +13,13 @@ export function Contact() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Nome de um contato imediato</Text>
-      <AuthInput
+      <Input
         value={name}
         onChangeText={(text) => setName(text)}
         style={{ backgroundColor: theme.colors.white, borderWidth: 0 }}
       />
       <Text style={styles.text}>Telefone</Text>
-      <AuthInput
+      <Input
         placeholder="(00) 000000000"
         onChangeText={(phone) =>
           setProps({ contacts: [{ type: 1, description: phone, name }] })

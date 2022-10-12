@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
-import AuthInput from "../../components/Inputs/AuthInput";
+import Input from "../../components/Inputs/Input";
 import LoginButton from "./components/LoginButton";
 
 import { AppStackParamList } from "../../global/route.types";
@@ -71,14 +71,14 @@ export default function Login() {
       <View style={styles.main}>
         <Text style={styles.title}>Elderage</Text>
 
-        <AuthInput
+        <Input
           placeholder="E-mail"
           leftIcon="user"
           keyboardType="email-address"
           value={email}
           onChangeText={(text) => setEmail(text)}
         />
-        <AuthInput
+        <Input
           placeholder="Digite sua senha"
           leftIcon="lock"
           isPassword

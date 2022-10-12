@@ -4,7 +4,7 @@ import { useNewAged } from "../../contexts/NewAgedProvider";
 import { theme } from "../../global/styles";
 import { daysByMonth, months, years } from "../../utils/date";
 import { Row } from "../Row";
-import { Selector } from "./components/Selector";
+import { Selector } from "../Selector";
 
 type Props = {
   onSelect: (date: string) => void;

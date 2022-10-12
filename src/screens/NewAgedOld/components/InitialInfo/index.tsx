@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { Text, View } from "react-native";
 import { DateSelector } from "../../../../components/DateSelector";
-import AuthInput from "../../../../components/Inputs/AuthInput";
+import Input from "../../../../components/Inputs/Input";
 import { useNewAged } from "../../../../contexts/NewAgedProvider";
 import { theme } from "../../../../global/styles";
 
@@ -18,7 +18,7 @@ export function InitialInfo() {
   return (
     <View style={styles.container}>
       <Text style={styles.name}>Nome do Idoso</Text>
-      <AuthInput
+      <Input
         leftIcon="user"
         style={{ backgroundColor: theme.colors.white, borderWidth: 0 }}
         onChangeText={(name) => setProps({ name })}
