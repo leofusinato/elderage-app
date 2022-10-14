@@ -85,3 +85,9 @@ export function formatTime(time?: string) {
   const [hour, minutes] = time.split(":");
   return `${hour}h${minutes}`;
 }
+
+export function getTimeFromDate(date: Date) {
+  return `${String(date.getHours()).padStart(2, "0")}:${String(
+    date.getMinutes()
+  ).padStart(2, "0")}:00`;
+}

@@ -1,10 +1,11 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Header } from "../../components/Header";
 import Input from "../../components/Inputs/Input";
 import { Selector } from "../../components/Selector";
 import { NewMedicationNavigationProps } from "../../global/route.types";
 import { api } from "../../services/api";
+import { TimePicker } from "./components/TimePicker";
 
 import { styles } from "./styles";
 
@@ -18,6 +19,10 @@ type BodyProps = {
   schedules: [];
 };
 
+type ScheduleProps = {
+  time: string;
+};
+
 export function NewMedication({
   route,
   navigation,
@@ -29,8 +34,14 @@ export function NewMedication({
     time_description: "",
     schedules: [],
   });
+  const [schedulesList, setSchedulesList] = useState<string[]>(["08:00:00"]);
+  // let schedulesList = ["08:00:00"];
 
-  const RestInputs = useCallback(() => {
+  useEffect(() => {
+    console.log(schedulesList);
+  }, [schedulesList]);
+
+  const DynamicInputs = useCallback(() => {
     if (body.time_type === 0) {
       return (
         <>
@@ -45,8 +56,29 @@ export function NewMedication({
           />
         </>
       );
+    } else if (body.time_type === 1) {
+      return (
+        <>
+          {schedulesList.map((item, index) => (
+            <TimePicker
+              key={index}
+              value={item}
+              onChangeValue={(value: string) => {
+                // let schedules = schedulesList;
+                // schedules[index] = value;
+                setSchedulesList((state) => {
+                  state[index] = value;
+                  return state;
+                });
+              }}
+              onAdd={() => {}}
+              onRemove={() => {}}
+            />
+          ))}
+        </>
+      );
     }
-    return <></>;
+    return null;
   }, [body.time_type]);
 
   const handleAddMedication = async () => {
@@ -106,7 +138,7 @@ export function NewMedication({
           data={timeTypes}
           placeholder="Selecione"
         />
-        <RestInputs />
+        <DynamicInputs />
       </ScrollView>
       <View style={styles.footer}>
         <TouchableOpacity
