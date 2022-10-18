@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   title: {
     fontFamily: theme.fonts.medium,
     fontSize: 16,
-    color: theme.colors.primary,
+    color: theme.colors.primary700,
   },
   seeAll: {
     fontFamily: theme.fonts.medium,

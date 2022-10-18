@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderRadius: 16,
     marginBottom: 16,
+    borderWidth: 1,
   },
   header: {
     flexDirection: "row",
@@ -22,7 +23,6 @@ export const styles = StyleSheet.create({
     height: 40,
     width: 40,
     borderRadius: 20,
-    backgroundColor: theme.colors.white,
     justifyContent: "center",
     alignItems: "center",
     marginRight: 8,
@@ -30,32 +30,27 @@ export const styles = StyleSheet.create({
   name: {
     fontFamily: theme.fonts.bold,
     fontSize: 16,
-    color: theme.colors.white,
   },
   right: {
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 8,
     paddingVertical: 4,
-    backgroundColor: theme.colors.white,
     borderRadius: 24,
   },
   hour: {
     fontFamily: theme.fonts.regular,
     fontSize: 12,
-    color: theme.colors.success,
     marginLeft: 8,
   },
   descriptionContainer: {
     marginTop: 8,
     padding: 8,
-    backgroundColor: theme.colors.white,
     borderRadius: 4,
   },
   description: {
     fontFamily: theme.fonts.regular,
     fontSize: 14,
-    color: theme.colors.success,
   },
   footer: {
     marginTop: 14,
@@ -67,10 +62,9 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  local: {
+  place: {
     fontFamily: theme.fonts.regular,
     fontSize: 14,
-    color: theme.colors.white,
     marginLeft: 12,
   },
 });

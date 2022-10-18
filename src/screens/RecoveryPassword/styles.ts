@@ -33,6 +33,9 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     borderBottomWidth: 1,
     textAlign: "center",
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: theme.colors.neutral300,
   },
   loading: {
     marginTop: 40,

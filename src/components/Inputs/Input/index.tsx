@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { View, ViewStyle, StyleProp, TouchableOpacity } from "react-native";
+import {
+  View,
+  ViewStyle,
+  StyleProp,
+  TouchableOpacity,
+  TextInput,
+  TextInputProps,
+} from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { styles } from "./styles";
-import TextInputMask, {
-  TextInputMaskProps,
-} from "react-native-text-input-mask";
+// import TextInputMask, {
+//   TextInputMaskProps,
+// } from "react-native-text-input-mask";
 import { theme } from "../../../global/styles";
 
 type Props = {
@@ -12,7 +19,7 @@ type Props = {
   leftIcon?: any;
   style?: StyleProp<ViewStyle>;
   isPassword?: boolean;
-} & TextInputMaskProps;
+} & TextInputProps;
 
 export default function Input({
   placeholder = "",
@@ -26,7 +33,7 @@ export default function Input({
   return (
     <View style={[styles.container, style]}>
       <Feather name={leftIcon} size={20} style={styles.icon} />
-      <TextInputMask
+      <TextInput
         placeholder={placeholder}
         style={styles.input}
         placeholderTextColor={theme.colors.neutral300}
