@@ -20,4 +20,7 @@ export const styles = StyleSheet.create({
     color: theme.colors.neutral700,
     marginTop: 16,
   },
+  actions: {
+    justifyContent: "space-between",
+  },
 });

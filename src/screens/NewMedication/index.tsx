@@ -1,10 +1,4 @@
-import React, {
-  Children,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { Children, useEffect, useMemo, useState } from "react";
 import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
@@ -122,6 +116,9 @@ export function NewMedication({
           body.schedules.push(value);
         });
       }
+      if (body.time_type) {
+        body.time_type = body.time_type + 1;
+      }
       let response;
       if (isEditing) {
         response = await api.put(
@@ -222,7 +219,7 @@ export function NewMedication({
           }}
         >
           <Selector
-            defaultValue={timeTypes[body.time_type || 0]}
+            defaultValue={body.time_type ? timeTypes[body.time_type] : null}
             onSelect={(_, index) => {
               if (index != 1) {
                 setSchedulesList((prev) => {

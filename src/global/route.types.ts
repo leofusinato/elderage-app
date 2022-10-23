@@ -48,6 +48,10 @@ export type AppStackParamList = {
     agedId: string;
     medication?: MedicationProps;
   };
+  SendInvite: {
+    agedId: string;
+  };
+  SuccessInvite: undefined;
 };
 
 export type LoginNavigationProps = {
@@ -56,6 +60,10 @@ export type LoginNavigationProps = {
 
 export type RegisterNameNavigationProps = {
   navigation: NativeStackNavigationProp<AppStackParamList, "RegisterName">;
+};
+
+export type SuccessInviteNavigationProps = {
+  navigation: NativeStackNavigationProp<AppStackParamList, "SuccessInvite">;
 };
 
 export type RegisterAuthNavigationProps = {
@@ -116,4 +124,9 @@ export type MedicationsListNavigationProps = {
 export type ContactsListNavigationProps = {
   route: RouteProp<AppStackParamList, "ContactsList">;
   navigation: NativeStackNavigationProp<AppStackParamList, "ContactsList">;
+};
+
+export type SendInviteNavigationProps = {
+  route: RouteProp<AppStackParamList, "SendInvite">;
+  navigation: NativeStackNavigationProp<AppStackParamList, "SendInvite">;
 };

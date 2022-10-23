@@ -36,7 +36,7 @@ export default function Input({
       <TextInput
         placeholder={placeholder}
         style={styles.input}
-        placeholderTextColor={theme.colors.neutral300}
+        placeholderTextColor={theme.colors.neutral500}
         secureTextEntry={isPassword && hidePassword}
         {...props}
       />

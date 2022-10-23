@@ -14,6 +14,7 @@ import { theme } from "../global/styles";
 import { NewAged } from "../screens/NewAged";
 import NewAgedRoutes from "./newAged.routes";
 import { useNewAged } from "../contexts/NewAgedProvider";
+import { Notifications } from "../screens/Notifications";
 
 const MainStack = createBottomTabNavigator();
 
@@ -100,8 +101,8 @@ const MainRoutes: React.FC = () => {
         }}
       />
       <MainStack.Screen
-        name="Chat"
-        component={Home}
+        name="Notifications"
+        component={Notifications}
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }) => {
@@ -112,7 +113,7 @@ const MainRoutes: React.FC = () => {
                 }
               >
                 <Ionicons
-                  name="ios-chatbubbles-outline"
+                  name="notifications-outline"
                   size={24}
                   color={focused ? theme.colors.white : "#9656FE"}
                 />

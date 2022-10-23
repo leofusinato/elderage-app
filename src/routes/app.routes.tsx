@@ -8,6 +8,8 @@ import { MedicationsList } from "../screens/AgedDetails/screens/MedicationsList"
 import { ContactsList } from "../screens/AgedDetails/screens/ContactsList";
 import { NewContact } from "../screens/NewContact";
 import { NewMedication } from "../screens/NewMedication";
+import { SendInvite } from "../screens/SendInvite";
+import { SuccessInvite } from "../screens/SuccessInvite";
 
 const { Navigator, Screen } = createNativeStackNavigator<AppStackParamList>();
 
@@ -52,6 +54,20 @@ const AppRoutes: React.FC = () => (
       <Screen
         name="NewMedication"
         component={NewMedication}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Screen
+        name="SendInvite"
+        component={SendInvite}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Screen
+        name="SuccessInvite"
+        component={SuccessInvite}
         options={{
           headerShown: false,
         }}
