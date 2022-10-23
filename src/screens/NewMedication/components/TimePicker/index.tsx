@@ -13,11 +13,18 @@ type Props = {
   onChangeValue: (value: string) => void;
   onAdd: () => void;
   onRemove: () => void;
+  canRemove: boolean;
 };
 
-export function TimePicker({ value, onChangeValue, onAdd, onRemove }: Props) {
+export function TimePicker({
+  value,
+  onChangeValue,
+  onAdd,
+  onRemove,
+  canRemove,
+}: Props) {
   const [visible, setVisible] = useState<boolean>(false);
-  const [internalValue, setInternalValue] = useState<string>("");
+  const [internalValue, setInternalValue] = useState<string>(value);
 
   const handleConfirm = (date: Date) => {
     const formatted = getTimeFromDate(date);
@@ -35,7 +42,7 @@ export function TimePicker({ value, onChangeValue, onAdd, onRemove }: Props) {
         >
           <Text style={styles.time}>{internalValue}</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           activeOpacity={0.5}
           onPress={onAdd}
           style={[
@@ -44,13 +51,25 @@ export function TimePicker({ value, onChangeValue, onAdd, onRemove }: Props) {
           ]}
         >
           <Ionicons name="add" size={24} color={theme.colors.white} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           activeOpacity={0.5}
+          disabled={!canRemove}
           onPress={onRemove}
-          style={[styles.button, { backgroundColor: theme.colors.secondary }]}
+          style={[
+            styles.button,
+            {
+              backgroundColor: canRemove
+                ? theme.colors.secondary
+                : theme.colors.neutral100,
+            },
+          ]}
         >
-          <Ionicons name="remove" size={24} color={theme.colors.white} />
+          <Ionicons
+            name="remove"
+            size={24}
+            color={canRemove ? theme.colors.white : theme.colors.neutral100}
+          />
         </TouchableOpacity>
       </Row>
       <DateTimePickerModal

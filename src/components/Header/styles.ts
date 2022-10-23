@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
   backText: {
     fontFamily: theme.fonts.regular,
     fontSize: 12,
-    marginLeft: 12,
+    marginLeft: 8,
   },
   title: {
     fontFamily: theme.fonts.bold,

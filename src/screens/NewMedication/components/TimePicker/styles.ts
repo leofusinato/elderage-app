@@ -4,6 +4,7 @@ import { theme } from "../../../../global/styles";
 export const styles = StyleSheet.create({
   container: {
     justifyContent: "space-between",
+    marginBottom: 16,
   },
   timeContainer: {
     paddingVertical: 16,

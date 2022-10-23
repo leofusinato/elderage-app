@@ -42,9 +42,11 @@ export type AppStackParamList = {
   };
   NewContact: {
     agedId: string;
+    contact?: ContactProps;
   };
   NewMedication: {
     agedId: string;
+    medication?: MedicationProps;
   };
 };
 

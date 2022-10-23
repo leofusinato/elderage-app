@@ -13,6 +13,7 @@ export const theme = {
     neutral700: "#322D37",
     primaryBackground: "#F2EBFF",
     background: "#FEFEFE",
+    error500: "#D53624",
   },
   fonts: {
     regular: "Roboto_400Regular",

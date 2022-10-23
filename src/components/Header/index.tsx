@@ -10,9 +10,10 @@ import { styles } from "./styles";
 
 type Props = {
   title: string;
+  headerRight?: React.ReactNode;
 };
 
-export function Header({ title }: Props) {
+export function Header({ title, headerRight }: Props) {
   const navigation = useNavigation();
 
   return (
@@ -37,10 +38,16 @@ export function Header({ title }: Props) {
         </Row>
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
-      <Row hidden>
-        <Entypo name="chevron-left" size={28} color={theme.colors.neutral300} />
-        <Text style={styles.backText}>Voltar</Text>
-      </Row>
+      {headerRight || (
+        <Row hidden>
+          <Entypo
+            name="chevron-left"
+            size={28}
+            color={theme.colors.neutral300}
+          />
+          <Text style={styles.backText}>Voltar</Text>
+        </Row>
+      )}
     </View>
   );
 }

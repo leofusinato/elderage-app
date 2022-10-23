@@ -46,7 +46,12 @@ export function MedicationsList({
             <ItemRow
               key={item.id}
               description={item.description}
-              onPress={() => {}}
+              onPress={() =>
+                navigation.navigate("NewMedication", {
+                  agedId: id,
+                  medication: item,
+                })
+              }
             />
           ))}
         </View>

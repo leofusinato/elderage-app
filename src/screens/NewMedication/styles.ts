@@ -21,7 +21,6 @@ export const styles = StyleSheet.create({
   selector: {
     borderRadius: 8,
     backgroundColor: theme.colors.white,
-    marginBottom: 24,
   },
   footer: {
     paddingHorizontal: 16,
@@ -33,6 +32,11 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     paddingVertical: 12,
     borderRadius: 8,
+  },
+  addButton: {
+    borderRadius: 8,
+    padding: 8,
+    backgroundColor: theme.colors.success,
   },
   activeButton: {
     backgroundColor: theme.colors.success,

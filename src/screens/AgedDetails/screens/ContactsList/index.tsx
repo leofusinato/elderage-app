@@ -1,12 +1,12 @@
+import { useCallback, useState } from "react";
 import { Alert, ScrollView, View } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import { ContactsListNavigationProps } from "../../../../global/route.types";
 import { ItemRow } from "../components/ItemRow";
 import { Header } from "../components/Header";
+import { AddButton } from "../../components/AddButton";
 
 import { styles } from "./styles";
-import { AddButton } from "../../components/AddButton";
-import { useCallback, useState } from "react";
-import { useFocusEffect } from "@react-navigation/native";
 import { api } from "../../../../services/api";
 
 export function ContactsList({
@@ -43,7 +43,16 @@ export function ContactsList({
         <Header name={name} gender={gender} />
         <View style={styles.list}>
           {contacts.map((item) => (
-            <ItemRow key={item.id} description={item.name} onPress={() => {}} />
+            <ItemRow
+              key={item.id}
+              description={item.name}
+              onPress={() =>
+                navigation.navigate("NewContact", {
+                  agedId: route.params.aged.id,
+                  contact: item,
+                })
+              }
+            />
           ))}
         </View>
       </ScrollView>
