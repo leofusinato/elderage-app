@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "276660638226",
+    "project_id": "elderage-cf71b",
+    "storage_bucket": "elderage-cf71b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:276660638226:android:db7dc9e3ea5286b2a3becb",
+        "android_client_info": {
+          "package_name": "br.com.elderage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "276660638226-fr9v7cecfr17qv5pk2e52l1cv2oi8mt9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9blYznSiqx8cN_eiCTcUYrhH9Yrurztg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "276660638226-fr9v7cecfr17qv5pk2e52l1cv2oi8mt9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "276660638226-jh7mra6k1f0uh0pkdbrt0qaoausogu4n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.elderage"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

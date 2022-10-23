@@ -8,7 +8,11 @@
       "**/*"
     ],
     "ios": {
-      "bundleIdentifier": "org.name.elderage"
+      "bundleIdentifier": "br.com.elderage"
+    },
+    "android": {
+      "package": "br.com.elderage",
+      "googleServicesFile": "./android/app/google-services.json"
     }
   }
 }
