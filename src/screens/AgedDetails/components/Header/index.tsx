@@ -10,6 +10,7 @@ import { AppStackParamList } from "../../../../global/route.types";
 import { AgedProps } from "../../../../global/models/aged";
 import { theme } from "../../../../global/styles";
 import { styles } from "./styles";
+import { Button } from "../../../../components/Button";
 
 type Props = {
   data: AgedProps;
@@ -25,12 +26,11 @@ export function Header({ data }: Props) {
     <View style={styles.container}>
       <Row style={styles.actions}>
         <BackButton />
-        <TouchableOpacity
-          activeOpacity={0.5}
+        <Button
           onPress={() => navigation.navigate("SendInvite", { agedId: data.id })}
         >
           <AntDesign name="adduser" size={24} color={theme.colors.neutral700} />
-        </TouchableOpacity>
+        </Button>
       </Row>
       <View style={styles.center}>
         <AgedImage gender={data.gender} size={70} />

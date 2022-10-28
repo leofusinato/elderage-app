@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, ScrollView, TouchableOpacity, Alert } from "react-native";
+import { View, Text, ScrollView, Alert } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Header } from "../../components/Header";
 import Input from "../../components/Inputs/Input";
@@ -8,6 +8,7 @@ import { NewContactNavigationProps } from "../../global/route.types";
 import { theme } from "../../global/styles";
 import { api } from "../../services/api";
 import { styles } from "./styles";
+import { Button } from "../../components/Button";
 
 export function NewContact({ navigation, route }: NewContactNavigationProps) {
   const [name, setName] = useState("");
@@ -83,9 +84,9 @@ export function NewContact({ navigation, route }: NewContactNavigationProps) {
 
   const Delete = () => {
     return (
-      <TouchableOpacity activeOpacity={0.5} onPress={handleDelete}>
+      <Button onPress={handleDelete}>
         <AntDesign name="delete" size={20} color={theme.colors.secondary} />
-      </TouchableOpacity>
+      </Button>
     );
   };
 
@@ -115,19 +116,18 @@ export function NewContact({ navigation, route }: NewContactNavigationProps) {
         />
       </ScrollView>
       <View style={styles.footer}>
-        <TouchableOpacity
+        <Button
           style={[
             styles.button,
             valid ? styles.activeButton : styles.disabledButton,
           ]}
-          activeOpacity={0.5}
           disabled={!valid}
           onPress={async () => await handleConfirm()}
         >
           <Text style={styles.next}>
             {isEditing ? "Atualizar" : "Cadastrar"}
           </Text>
-        </TouchableOpacity>
+        </Button>
       </View>
     </>
   );

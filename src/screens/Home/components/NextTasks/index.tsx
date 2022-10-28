@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 
 import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Button } from "../../../../components/Button";
 import { TaskProps } from "../../../../global/models/task";
 import { AppStackParamList } from "../../../../global/route.types";
 import { api } from "../../../../services/api";
@@ -24,9 +25,9 @@ export function NextTasks({ data, onDone }: Props) {
     <View>
       <View style={styles.header}>
         <Text style={styles.title}>Tarefas Próximas</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Calendar")}>
+        <Button onPress={() => navigation.navigate("Calendar")}>
           <Text style={styles.seeAll}>Ver todas</Text>
-        </TouchableOpacity>
+        </Button>
       </View>
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>

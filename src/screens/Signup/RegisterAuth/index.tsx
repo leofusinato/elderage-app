@@ -4,23 +4,23 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
+
+import { Button } from "../../../components/Button";
+import Input from "../../../components/Inputs/Input";
+import { PasswordValidator } from "./components/PasswordValidator";
 
 import {
   AppStackParamList,
   RegisterAuthNavigationProps,
 } from "../../../global/route.types";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { api } from "../../../services/api";
 import { theme } from "../../../global/styles";
 import { styles } from "./styles";
-import Input from "../../../components/Inputs/Input";
-import { PasswordValidator } from "./components/PasswordValidator";
-import { api } from "../../../services/api";
 
 export function RegisterAuth({ route }: RegisterAuthNavigationProps) {
   const navigation =
@@ -68,13 +68,13 @@ export function RegisterAuth({ route }: RegisterAuthNavigationProps) {
     >
       <View style={styles.main}>
         <View style={styles.row}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Button onPress={() => navigation.goBack()}>
             <MaterialIcons
               name="keyboard-arrow-left"
               size={30}
               color={theme.colors.primary}
             />
-          </TouchableOpacity>
+          </Button>
           <Text style={styles.signupText}>Cadastre-se aqui</Text>
           <MaterialIcons
             name="keyboard-arrow-left"
@@ -119,13 +119,12 @@ export function RegisterAuth({ route }: RegisterAuthNavigationProps) {
           />
 
           <View style={styles.footer}>
-            <TouchableOpacity
+            <Button
               style={styles.buttonContainer}
-              activeOpacity={0.5}
               onPress={async () => await handleSignup()}
             >
               <Text style={styles.buttonText}>Cadastrar</Text>
-            </TouchableOpacity>
+            </Button>
           </View>
         </KeyboardAvoidingView>
       </View>

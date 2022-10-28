@@ -1,8 +1,9 @@
-import { Text, TouchableOpacity } from "react-native";
+import { Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { styles } from "./styles";
 import { theme } from "../../../../global/styles";
+import { Button } from "../../../../components/Button";
 
 type Props = {
   description: string;
@@ -11,17 +12,13 @@ type Props = {
 
 export function AddButton({ description, onPress }: Props) {
   return (
-    <TouchableOpacity
-      style={styles.button}
-      activeOpacity={0.5}
-      onPress={onPress}
-    >
+    <Button style={styles.button} onPress={onPress}>
       <Ionicons
         name="add-circle-outline"
         size={24}
         color={theme.colors.primary}
       />
       <Text style={styles.description}>{description}</Text>
-    </TouchableOpacity>
+    </Button>
   );
 }

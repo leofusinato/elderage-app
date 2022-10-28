@@ -1,5 +1,6 @@
 import { Entypo } from "@expo/vector-icons";
 import { Text, TouchableOpacity, View } from "react-native";
+import { Button } from "../../../../../components/Button";
 import { Row } from "../../../../../components/Row";
 import { theme } from "../../../../../global/styles";
 
@@ -12,7 +13,7 @@ type Props = {
 
 export function ItemRow({ description, onPress }: Props) {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <Button onPress={onPress} style={styles.container}>
       <Row style={styles.row}>
         <Text>{description}</Text>
         <Entypo
@@ -21,6 +22,6 @@ export function ItemRow({ description, onPress }: Props) {
           color={theme.colors.neutral700}
         />
       </Row>
-    </TouchableOpacity>
+    </Button>
   );
 }

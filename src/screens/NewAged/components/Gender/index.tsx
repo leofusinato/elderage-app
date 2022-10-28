@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
-
-import { styles } from "./styles";
+import { Image, Text, View } from "react-native";
+import { Row } from "../../../../components/Row";
+import { Button } from "../../../../components/Button";
 
 import FemaleAged from "../../../../assets/images/female-aged.png";
 import MaleAged from "../../../../assets/images/male-aged.png";
-import { Row } from "../../../../components/Row";
-import { theme } from "../../../../global/styles";
+
 import { useNewAged } from "../../../../contexts/NewAgedProvider";
+import { theme } from "../../../../global/styles";
+import { styles } from "./styles";
 
 export function Gender() {
   const { setProps } = useNewAged();
@@ -26,7 +27,7 @@ export function Gender() {
         </View>
         <Row style={{ justifyContent: "space-between" }}>
           <View>
-            <TouchableOpacity
+            <Button
               activeOpacity={1}
               onPress={() => handleChangeGender("F")}
               style={{
@@ -37,7 +38,7 @@ export function Gender() {
               }}
             >
               <Image source={FemaleAged} />
-            </TouchableOpacity>
+            </Button>
             <Text
               style={[
                 styles.gender,
@@ -48,7 +49,7 @@ export function Gender() {
             </Text>
           </View>
           <View>
-            <TouchableOpacity
+            <Button
               activeOpacity={1}
               onPress={() => handleChangeGender("M")}
               style={{
@@ -59,7 +60,7 @@ export function Gender() {
               }}
             >
               <Image source={MaleAged} />
-            </TouchableOpacity>
+            </Button>
             <Text
               style={[
                 styles.gender,

@@ -1,5 +1,5 @@
 import React, { Children, useEffect, useMemo, useState } from "react";
-import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Alert, ScrollView, Text, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Header } from "../../components/Header";
@@ -12,6 +12,7 @@ import { TimePicker } from "./components/TimePicker";
 import { theme } from "../../global/styles";
 import { api } from "../../services/api";
 import { styles } from "./styles";
+import { Button } from "../../components/Button";
 
 const timeTypes = ["Quantidade diária", "Horário"];
 
@@ -171,9 +172,9 @@ export function NewMedication({
 
   const Delete = () => {
     return (
-      <TouchableOpacity activeOpacity={0.5} onPress={handleDelete}>
+      <Button onPress={handleDelete}>
         <AntDesign name="delete" size={20} color={theme.colors.secondary} />
-      </TouchableOpacity>
+      </Button>
     );
   };
 
@@ -242,8 +243,7 @@ export function NewMedication({
             placeholder="Selecione"
           />
           {body.time_type == 1 && (
-            <TouchableOpacity
-              activeOpacity={0.5}
+            <Button
               onPress={() => {
                 setSchedulesList(
                   (prev) => new Map([...prev, [schedulesList.size, ""]])
@@ -252,25 +252,24 @@ export function NewMedication({
               style={styles.addButton}
             >
               <Ionicons name="add" size={24} color={theme.colors.white} />
-            </TouchableOpacity>
+            </Button>
           )}
         </Row>
         <DynamicInputs />
       </ScrollView>
       <View style={styles.footer}>
-        <TouchableOpacity
+        <Button
           style={[
             styles.button,
             validForm ? styles.activeButton : styles.disabledButton,
           ]}
-          activeOpacity={0.5}
           disabled={!validForm}
           onPress={async () => handleSubmit()}
         >
           <Text style={styles.next}>
             {isEditing ? "Atualizar" : "Cadastrar"}
           </Text>
-        </TouchableOpacity>
+        </Button>
       </View>
     </>
   );

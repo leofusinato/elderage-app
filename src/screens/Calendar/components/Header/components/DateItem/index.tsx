@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Text, TouchableOpacity, View } from "react-native";
+import { Button } from "../../../../../../components/Button";
 
 import { styles } from "./styles";
 
@@ -13,10 +14,7 @@ type Props = {
 
 export function DateItem({ date, weekDay, onChangeDate, selected }: Props) {
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => onChangeDate(date)}
-    >
+    <Button style={styles.container} onPress={() => onChangeDate(date)}>
       <View
         style={[
           styles.dateContainer,
@@ -32,6 +30,6 @@ export function DateItem({ date, weekDay, onChangeDate, selected }: Props) {
       <Text style={[styles.weekDay, selected ? styles.selectedWeekDay : {}]}>
         {weekDay}
       </Text>
-    </TouchableOpacity>
+    </Button>
   );
 }

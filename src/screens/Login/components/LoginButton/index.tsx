@@ -1,5 +1,6 @@
 import React from "react";
-import { TouchableOpacity, Text, ViewStyle, StyleProp } from "react-native";
+import { Text, ViewStyle, StyleProp } from "react-native";
+import { Button } from "../../../../components/Button";
 import { styles } from "./styles";
 
 type Props = {
@@ -10,12 +11,8 @@ type Props = {
 
 export default function LoginButton({ onPress, description, style }: Props) {
   return (
-    <TouchableOpacity
-      style={[styles.container, style]}
-      activeOpacity={0.5}
-      onPress={onPress}
-    >
+    <Button style={[styles.container, style]} onPress={onPress}>
       <Text style={styles.text}>{description || "Entrar"}</Text>
-    </TouchableOpacity>
+    </Button>
   );
 }

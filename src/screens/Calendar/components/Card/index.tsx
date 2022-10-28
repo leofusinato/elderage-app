@@ -10,6 +10,7 @@ import { TaskProps } from "../../../../global/models/task";
 import { formatTime } from "../../../../utils/date";
 import { theme } from "../../../../global/styles";
 import { styles } from "./styles";
+import { Button } from "../../../../components/Button";
 
 type Props = {
   data: TaskProps;
@@ -65,7 +66,7 @@ export function Card({ data, done = false, onDone }: Props) {
   }, [done]);
 
   return (
-    <TouchableOpacity
+    <Button
       style={[
         styles.container,
         {
@@ -137,6 +138,6 @@ export function Card({ data, done = false, onDone }: Props) {
           <Feather name="check" size={20} color={theme.colors.white} />
         )}
       </View>
-    </TouchableOpacity>
+    </Button>
   );
 }

@@ -3,7 +3,8 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import React, { useMemo, useState } from "react";
 
-import { View, Text, TouchableOpacity, Alert, FlatList } from "react-native";
+import { View, Text, Alert } from "react-native";
+import { Button } from "../../components/Button";
 import { useNewAged } from "../../contexts/NewAgedProvider";
 import { AppStackParamList } from "../../global/route.types";
 import { api } from "../../services/api";
@@ -94,19 +95,18 @@ export function NewAged() {
         <Header onBack={handlePreviosuStep} />
         {screens[screenStep]}
         <View style={styles.footer}>
-          <TouchableOpacity
+          <Button
             style={[
               styles.button,
               isScreenEnabled ? styles.activeButton : styles.disabledButton,
             ]}
-            activeOpacity={0.5}
             disabled={!isScreenEnabled}
             onPress={async () => await handleNextStep()}
           >
             <Text style={styles.next}>
               {isLastScreen ? "Cadastrar" : "Próximo"}
             </Text>
-          </TouchableOpacity>
+          </Button>
         </View>
       </View>
     </>

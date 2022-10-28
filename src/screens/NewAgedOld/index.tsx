@@ -1,18 +1,19 @@
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import React, { useMemo, useState } from "react";
+import { View, Text, Alert } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-import React, { useMemo, useState } from "react";
 
-import { View, Text, TouchableOpacity, Alert } from "react-native";
-import { useNewAged } from "../../contexts/NewAgedProvider";
-import { AppStackParamList } from "../../global/route.types";
-import { api } from "../../services/api";
+import { Button } from "../../components/Button";
 import { Address } from "./components/Address";
 import { Contact } from "./components/Contact";
 import { Gender } from "./components/Gender";
 import { Header } from "./components/Header";
 import { InitialInfo } from "./components/InitialInfo";
 
+import { AppStackParamList } from "../../global/route.types";
+import { useNewAged } from "../../contexts/NewAgedProvider";
+import { api } from "../../services/api";
 import { styles } from "./styles";
 
 const screens = [<InitialInfo />, <Gender />, <Address />, <Contact />];
@@ -94,19 +95,18 @@ export function NewAged() {
         <Header onBack={handlePreviosuStep} />
         {screens[screenStep]}
         <View style={styles.footer}>
-          <TouchableOpacity
+          <Button
             style={[
               styles.button,
               isScreenEnabled ? styles.activeButton : styles.disabledButton,
             ]}
-            activeOpacity={0.5}
             disabled={!isScreenEnabled}
             onPress={async () => await handleNextStep()}
           >
             <Text style={styles.next}>
               {isLastScreen ? "Cadastrar" : "Próximo"}
             </Text>
-          </TouchableOpacity>
+          </Button>
         </View>
       </View>
     </>

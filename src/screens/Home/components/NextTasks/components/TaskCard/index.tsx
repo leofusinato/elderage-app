@@ -8,6 +8,7 @@ import { styles } from "./styles";
 import { theme } from "../../../../../../global/styles";
 import { formatTime } from "../../../../../../utils/date";
 import { TaskMenu } from "../../../../../../components/TaskMenu";
+import { Button } from "../../../../../../components/Button";
 
 type Props = {
   data: TaskProps;
@@ -19,7 +20,7 @@ export function TaskCard({ data, first, onDone }: Props) {
   const [visible, setVisible] = useState(false);
 
   return (
-    <TouchableOpacity
+    <Button
       style={[styles.container, first ? styles.firstContainer : {}]}
       activeOpacity={0.8}
     >
@@ -64,6 +65,6 @@ export function TaskCard({ data, first, onDone }: Props) {
           color={first ? theme.colors.white : theme.colors.neutral500}
         />
       </View>
-    </TouchableOpacity>
+    </Button>
   );
 }

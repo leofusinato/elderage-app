@@ -13,6 +13,7 @@ import { styles } from "./styles";
 //   TextInputMaskProps,
 // } from "react-native-text-input-mask";
 import { theme } from "../../../global/styles";
+import { Button } from "../../Button";
 
 type Props = {
   placeholder?: string;
@@ -41,13 +42,13 @@ export default function Input({
         {...props}
       />
       {isPassword && (
-        <TouchableOpacity onPress={() => setHidePassword(!hidePassword)}>
+        <Button onPress={() => setHidePassword(!hidePassword)}>
           <Feather
             name={!hidePassword ? "eye" : "eye-off"}
             size={20}
             style={styles.icon}
           />
-        </TouchableOpacity>
+        </Button>
       )}
     </View>
   );

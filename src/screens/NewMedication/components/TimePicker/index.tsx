@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { Text } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Ionicons } from "@expo/vector-icons";
-import { Row } from "../../../../components/Row";
 
-import { styles } from "./styles";
-import { theme } from "../../../../global/styles";
+import { Row } from "../../../../components/Row";
+import { Button } from "../../../../components/Button";
+
 import { getTimeFromDate } from "../../../../utils/date";
+import { theme } from "../../../../global/styles";
+import { styles } from "./styles";
 
 type Props = {
   value: string;
@@ -36,24 +38,10 @@ export function TimePicker({
   return (
     <>
       <Row style={styles.container}>
-        <TouchableOpacity
-          style={styles.timeContainer}
-          onPress={() => setVisible(true)}
-        >
+        <Button style={styles.timeContainer} onPress={() => setVisible(true)}>
           <Text style={styles.time}>{internalValue}</Text>
-        </TouchableOpacity>
-        {/* <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={onAdd}
-          style={[
-            styles.button,
-            { backgroundColor: theme.colors.success, marginRight: 16 },
-          ]}
-        >
-          <Ionicons name="add" size={24} color={theme.colors.white} />
-        </TouchableOpacity> */}
-        <TouchableOpacity
-          activeOpacity={0.5}
+        </Button>
+        <Button
           disabled={!canRemove}
           onPress={onRemove}
           style={[
@@ -70,7 +58,7 @@ export function TimePicker({
             size={24}
             color={canRemove ? theme.colors.white : theme.colors.neutral100}
           />
-        </TouchableOpacity>
+        </Button>
       </Row>
       <DateTimePickerModal
         isVisible={visible}

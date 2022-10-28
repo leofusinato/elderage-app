@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Alert, ScrollView, Text, View } from "react-native";
+
 import { BackButton } from "../../components/BackButton";
 import Input from "../../components/Inputs/Input";
 import { Row } from "../../components/Row";
+import { Button } from "../../components/Button";
 
 import { SendInviteNavigationProps } from "../../global/route.types";
 import { api } from "../../services/api";
@@ -54,10 +56,9 @@ export function SendInvite({ navigation, route }: SendInviteNavigationProps) {
           autoCorrect={false}
         />
       </ScrollView>
-      <TouchableOpacity
+      <Button
         onPress={handleSendInvite}
         disabled={!valid}
-        activeOpacity={0.5}
         style={[
           styles.button,
           {
@@ -68,7 +69,7 @@ export function SendInvite({ navigation, route }: SendInviteNavigationProps) {
         ]}
       >
         <Text style={styles.send}>Enviar</Text>
-      </TouchableOpacity>
+      </Button>
     </View>
   );
 }

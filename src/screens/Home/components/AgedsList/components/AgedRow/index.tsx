@@ -7,6 +7,7 @@ import { theme } from "../../../../../../global/styles";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AppStackParamList } from "../../../../../../global/route.types";
+import { Button } from "../../../../../../components/Button";
 
 type Props = {
   id: string;
@@ -19,7 +20,7 @@ export function AgedRow({ id, name, gender }: Props) {
     useNavigation<NativeStackNavigationProp<AppStackParamList, "Home">>();
 
   return (
-    <TouchableOpacity
+    <Button
       style={styles.container}
       onPress={() => {
         navigation.navigate("AgedDetails", { id });
@@ -36,6 +37,6 @@ export function AgedRow({ id, name, gender }: Props) {
         <Text style={styles.name}>{name}</Text>
       </View>
       <Entypo name="chevron-right" size={24} color={theme.colors.primary} />
-    </TouchableOpacity>
+    </Button>
   );
 }

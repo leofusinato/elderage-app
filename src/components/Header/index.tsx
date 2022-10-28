@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { theme } from "../../global/styles";
 import { styles } from "./styles";
+import { Button } from "../Button";
 
 type Props = {
   title: string;
@@ -18,7 +19,7 @@ export function Header({ title, headerRight }: Props) {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
+      <Button onPress={() => navigation.goBack()}>
         <Row>
           <Entypo
             name="chevron-left"
@@ -36,7 +37,7 @@ export function Header({ title, headerRight }: Props) {
             Voltar
           </Text>
         </Row>
-      </TouchableOpacity>
+      </Button>
       <Text style={styles.title}>{title}</Text>
       {headerRight || (
         <Row hidden>

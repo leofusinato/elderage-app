@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Text, TouchableOpacity, View } from "react-native";
+import { Button } from "../../../../components/Button";
 import { CheckinMedicationProps } from "../../../../global/models/checkin";
 import { ListItem } from "./components/ListItem";
 
@@ -15,9 +16,9 @@ export function RecentlyCompleted({ data }: Props) {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Concluídas recentemente</Text>
-        <TouchableOpacity>
+        <Button>
           <Text style={styles.seeAll}>Ver todas</Text>
-        </TouchableOpacity>
+        </Button>
       </View>
 
       {data.length > 0 ? (

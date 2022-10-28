@@ -23,6 +23,7 @@ import { theme } from "../../global/styles";
 import { styles } from "./styles";
 
 import { useNavigation } from "@react-navigation/native";
+import { Button } from "../../components/Button";
 
 export default function Login() {
   const { setUser } = useAuth();
@@ -90,12 +91,12 @@ export default function Login() {
 
         <LoginButton onPress={async () => await handleLogin()} />
 
-        <TouchableOpacity onPress={async () => await handleRecoverPassword()}>
+        <Button onPress={async () => await handleRecoverPassword()}>
           <Text style={styles.forgotPassword}>Esqueci minha senha</Text>
-        </TouchableOpacity>
+        </Button>
 
         <View style={styles.footer}>
-          <TouchableOpacity
+          <Button
             style={styles.registerButton}
             onPress={() => navigation.navigate("Signup")}
           >
@@ -105,7 +106,7 @@ export default function Login() {
               color={theme.colors.primary}
             />
             <Text style={styles.registerText}>Cadastre-se aqui</Text>
-          </TouchableOpacity>
+          </Button>
         </View>
       </View>
     </ScrollView>
