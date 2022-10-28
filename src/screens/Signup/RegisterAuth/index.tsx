@@ -1,18 +1,15 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Alert,
-  Keyboard,
   KeyboardAvoidingView,
   ScrollView,
   Text,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { useNavigation } from "@react-navigation/native";
-import { NextStepButton } from "../components/NextStepButton";
 
 import {
   AppStackParamList,
@@ -52,7 +49,8 @@ export function RegisterAuth({ route }: RegisterAuthNavigationProps) {
       try {
         await api.post("/users", { name, email, password });
         navigation.navigate("Login");
-      } catch {
+      } catch (err) {
+        console.log(JSON.stringify(err, null, 2));
         Alert.alert("Ops!", "Erro ao cadastrar o usuário");
       }
     } else {
@@ -98,6 +96,8 @@ export function RegisterAuth({ route }: RegisterAuthNavigationProps) {
             placeholder="Nos informe o seu e-mail"
             leftIcon="user"
             value={email}
+            autoCorrect={false}
+            autoCapitalize={"none"}
             onChangeText={(email) => setEmail(email)}
             keyboardType="email-address"
           />

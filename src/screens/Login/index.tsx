@@ -75,6 +75,8 @@ export default function Login() {
           placeholder="E-mail"
           leftIcon="user"
           keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
           value={email}
           onChangeText={(text) => setEmail(text)}
         />

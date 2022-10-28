@@ -44,17 +44,19 @@ export function NewMedication({
     if (isEditing) {
       const { description, details, time_type, time_description, schedules } =
         route.params.medication;
+
       let body = {
         description,
         details,
-        time_type,
-        time_description: time_description.toString(),
+        time_type: time_type - 1,
+        time_description: time_description ? time_description.toString() : "",
         schedules: [],
       };
-      if (time_type === 1) {
+      if (time_type === 2) {
         schedules?.forEach((item, index) => {
           schedulesList.set(index, item.time);
         });
+        setSchedulesList(schedulesList);
       }
       setBody(body);
     }

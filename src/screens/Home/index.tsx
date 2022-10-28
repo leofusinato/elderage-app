@@ -1,6 +1,6 @@
 import { useFocusEffect } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { ScrollView } from "react-native";
 import { AgedProps } from "../../global/models/aged";
@@ -30,11 +30,11 @@ export function Home() {
     })();
   }, []);
 
-  // useFocusEffect(() => {
-  //   (async () => {
-  //     await fetch();
-  //   })();
-  // });
+  useFocusEffect(
+    useCallback(() => {
+      fetch();
+    }, [])
+  );
 
   const fetch = async () => {
     const response = await api.get("/home");
