@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import React, { useCallback, useEffect, useState } from "react";
 
 import { ScrollView } from "react-native";
+import { LoadingContainer } from "../../components/LoadingContainer";
 import { AgedProps } from "../../global/models/aged";
 import { CheckinMedicationProps } from "../../global/models/checkin";
 import { TaskProps } from "../../global/models/task";
@@ -23,6 +24,7 @@ type HomeDataProps = {
 
 export function Home() {
   const [data, setData] = useState<HomeDataProps | null>(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -37,10 +39,12 @@ export function Home() {
   );
 
   const fetch = async () => {
+    setLoading(true);
     const response = await api.get("/home");
     if (response.status === 200) {
       setData(response.data);
     }
+    setLoading(false);
   };
 
   if (!data) {
@@ -50,11 +54,16 @@ export function Home() {
   return (
     <>
       <StatusBar backgroundColor={theme.colors.white} />
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        <Header />
-        <NextTasks data={data.nextTasks} onDone={async () => await fetch()} />
-        <RecentlyCompleted data={data.tasks} />
-        <AgedsList data={data.ageds} />
+      <ScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+      >
+        <LoadingContainer visible={loading}>
+          <Header />
+          <NextTasks data={data.nextTasks} onDone={async () => await fetch()} />
+          <RecentlyCompleted data={data.tasks} />
+          <AgedsList data={data.ageds} />
+        </LoadingContainer>
       </ScrollView>
     </>
   );
