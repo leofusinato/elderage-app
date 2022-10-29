@@ -28,7 +28,10 @@ export function TaskMenu({
     try {
       let body: any = {
         medication_id: data.medication.id,
-        date_hour_applied: getLocaledDate(new Date()),
+        date_hour_applied: new Date(),
+
+        // alter table checkin_medications
+        // alter column date_hour_applied type timestamp with time zone
       };
       if (data.medication.time_type === 2) {
         body.schedule_id = data.schedule_id;

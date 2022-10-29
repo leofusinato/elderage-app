@@ -1,19 +1,19 @@
 import { useFocusEffect } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
+// import { StatusBar } from "expo-status-bar";
 import React, { useCallback, useEffect, useState } from "react";
 
-import { ScrollView } from "react-native";
+import { ScrollView, StatusBar } from "react-native";
 import { LoadingContainer } from "../../components/LoadingContainer";
-import { AgedProps } from "../../global/models/aged";
-import { CheckinMedicationProps } from "../../global/models/checkin";
-import { TaskProps } from "../../global/models/task";
-import { theme } from "../../global/styles";
-import { api } from "../../services/api";
 import { AgedsList } from "./components/AgedsList";
 import { Header } from "./components/Header";
 import { NextTasks } from "./components/NextTasks";
 import { RecentlyCompleted } from "./components/RecentlyCompleted";
 
+import { AgedProps } from "../../global/models/aged";
+import { CheckinMedicationProps } from "../../global/models/checkin";
+import { TaskProps } from "../../global/models/task";
+import { api } from "../../services/api";
+import { theme } from "../../global/styles";
 import { styles } from "./styles";
 
 type HomeDataProps = {
@@ -54,10 +54,7 @@ export function Home() {
   return (
     <>
       <StatusBar backgroundColor={theme.colors.white} />
-      <ScrollView
-        contentContainerStyle={styles.container}
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <LoadingContainer visible={loading}>
           <Header />
           <NextTasks data={data.nextTasks} onDone={async () => await fetch()} />

@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { TaskProps } from "../../../../../../global/models/task";
-
-import { styles } from "./styles";
-import { theme } from "../../../../../../global/styles";
-import { formatTime } from "../../../../../../utils/date";
 import { TaskMenu } from "../../../../../../components/TaskMenu";
-import { Button } from "../../../../../../components/Button";
+
+import { TaskProps } from "../../../../../../global/models/task";
+import { formatTime } from "../../../../../../utils/date";
+import { theme } from "../../../../../../global/styles";
+import { styles } from "./styles";
 
 type Props = {
   data: TaskProps;
@@ -20,10 +19,7 @@ export function TaskCard({ data, first, onDone }: Props) {
   const [visible, setVisible] = useState(false);
 
   return (
-    <Button
-      style={[styles.container, first ? styles.firstContainer : {}]}
-      activeOpacity={0.8}
-    >
+    <View style={[styles.container, first ? styles.firstContainer : {}]}>
       <View style={styles.header}>
         <View style={styles.image}>
           <MaterialCommunityIcons
@@ -65,6 +61,6 @@ export function TaskCard({ data, first, onDone }: Props) {
           color={first ? theme.colors.white : theme.colors.neutral500}
         />
       </View>
-    </Button>
+    </View>
   );
 }

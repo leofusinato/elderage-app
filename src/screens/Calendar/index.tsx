@@ -4,7 +4,7 @@ import { View, ScrollView, Alert } from "react-native";
 import { Loading } from "../../components/Loading";
 import { TaskProps } from "../../global/models/task";
 import { api } from "../../services/api";
-import { formatDateToApi, formatTime } from "../../utils/date";
+import { formatDateToApi } from "../../utils/date";
 import { Card } from "./components/Card";
 import { Header } from "./components/Header";
 

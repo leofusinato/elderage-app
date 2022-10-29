@@ -39,8 +39,8 @@ export function MedicationsList({
 
   return (
     <View style={styles.container}>
+      <Header name={name} gender={gender} />
       <ScrollView>
-        <Header name={name} gender={gender} />
         <View style={styles.list}>
           {medications.map((item) => (
             <ItemRow

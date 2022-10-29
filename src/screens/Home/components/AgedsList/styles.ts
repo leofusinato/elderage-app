@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   title: {
     fontFamily: theme.fonts.bold,
     fontSize: 16,
-    color: theme.colors.primary,
+    color: theme.colors.primary700,
     marginBottom: 4,
   },
 });

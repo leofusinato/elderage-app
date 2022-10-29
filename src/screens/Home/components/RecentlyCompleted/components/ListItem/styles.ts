@@ -37,4 +37,9 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
     borderRadius: 24,
   },
+  time: {
+    fontFamily: theme.fonts.regular,
+    fontSize: 14,
+    color: theme.colors.success,
+  },
 });

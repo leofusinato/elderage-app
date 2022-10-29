@@ -39,8 +39,8 @@ export function ContactsList({
 
   return (
     <View style={styles.container}>
+      <Header name={name} gender={gender} />
       <ScrollView>
-        <Header name={name} gender={gender} />
         <View style={styles.list}>
           {contacts.map((item) => (
             <ItemRow

@@ -21,10 +21,12 @@ export function Contact() {
       <Text style={styles.text}>Telefone</Text>
       <Input
         placeholder="(00) 000000000"
+        keyboardType="number-pad"
+        maxLength={11}
         onChangeText={(phone) =>
           setProps({ contacts: [{ type: 1, description: phone, name }] })
         }
-        mask={"([00]) [999999999]"}
+        // mask={"([00]) [999999999]"}
         style={{ backgroundColor: theme.colors.white, borderWidth: 0 }}
       />
     </View>

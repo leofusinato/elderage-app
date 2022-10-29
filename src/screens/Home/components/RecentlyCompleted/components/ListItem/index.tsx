@@ -6,6 +6,7 @@ import { CheckinMedicationProps } from "../../../../../../global/models/checkin"
 import { theme } from "../../../../../../global/styles";
 import { styles } from "./styles";
 import moment from "moment";
+import { getTimeFromDate } from "../../../../../../utils/date";
 
 type Props = {
   data: CheckinMedicationProps;
@@ -33,7 +34,10 @@ export function ListItem({ data }: Props) {
           color={theme.colors.success}
           style={styles.icon}
         />
-        <Text>{moment(data.date_hour_applied).format("LT")}</Text>
+        {/* <Text>{getTimeFromDate(new Date(data.date_hour_applied))}</Text> */}
+        <Text style={styles.time}>
+          {moment(data.date_hour_applied).format("LT")}
+        </Text>
       </View>
     </View>
   );

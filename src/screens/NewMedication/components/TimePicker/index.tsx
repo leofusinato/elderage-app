@@ -13,7 +13,6 @@ import { styles } from "./styles";
 type Props = {
   value: string;
   onChangeValue: (value: string) => void;
-  onAdd: () => void;
   onRemove: () => void;
   canRemove: boolean;
 };
@@ -21,7 +20,6 @@ type Props = {
 export function TimePicker({
   value,
   onChangeValue,
-  onAdd,
   onRemove,
   canRemove,
 }: Props) {

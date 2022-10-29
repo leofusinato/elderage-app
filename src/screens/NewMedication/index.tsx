@@ -86,15 +86,9 @@ export function NewMedication({
             Array.from(schedulesList).map((item, index) => (
               <TimePicker
                 value={item[1]}
-                canRemove={item[0] > 0}
+                canRemove={schedulesList.size > 1}
                 onChangeValue={(value: string) => {
-                  setSchedulesList((prev) => new Map(prev).set(index, value));
-                }}
-                onAdd={() => {
-                  setSchedulesList(
-                    (prev) =>
-                      new Map([...prev, [schedulesList.size, "00:00:00"]])
-                  );
+                  setSchedulesList((prev) => new Map(prev).set(item[0], value));
                 }}
                 onRemove={() => {
                   setSchedulesList((prev) => {
@@ -119,9 +113,8 @@ export function NewMedication({
           body.schedules.push(value);
         });
       }
-      if (body.time_type) {
-        body.time_type = body.time_type + 1;
-      }
+      body.time_type = body.time_type === 1 ? 2 : 1;
+      console.log(body);
       let response;
       if (isEditing) {
         response = await api.put(
@@ -245,9 +238,10 @@ export function NewMedication({
           {body.time_type == 1 && (
             <Button
               onPress={() => {
-                setSchedulesList(
-                  (prev) => new Map([...prev, [schedulesList.size, ""]])
-                );
+                setSchedulesList((prev) => {
+                  const maxIndex = Math.max(...prev.keys());
+                  return new Map([...prev, [maxIndex + 1, ""]]);
+                });
               }}
               style={styles.addButton}
             >

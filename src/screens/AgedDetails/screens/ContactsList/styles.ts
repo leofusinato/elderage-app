@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.white,
     paddingHorizontal: 24,
-    paddingTop: getStatusBarHeight() + 54,
+    paddingTop: getStatusBarHeight() + 24,
     paddingBottom: 36,
   },
   list: {

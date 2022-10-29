@@ -79,7 +79,8 @@ export function NewAged() {
           return Boolean(
             contacts &&
               contacts?.length > 0 &&
-              contacts[0].description.length > 12 &&
+              contacts[0].description.length >= 10 &&
+              contacts[0].description.length <= 11 &&
               contacts[0].type != null &&
               contacts[0].name.length > 0
           );
