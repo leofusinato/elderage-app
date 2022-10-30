@@ -2,7 +2,14 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 
-import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  FlatList,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Button } from "../../../../components/Button";
 import { TaskProps } from "../../../../global/models/task";
 import { AppStackParamList } from "../../../../global/route.types";
@@ -30,18 +37,22 @@ export function NextTasks({ data, onDone }: Props) {
         </Button>
       </View>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {data.map((value, index) => {
-          return (
-            <TaskCard
-              data={value}
-              key={index}
-              first={index == 0}
-              onDone={onDone}
-            />
-          );
-        })}
-      </ScrollView>
+      {data.length > 0 ? (
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {data.map((value, index) => {
+            return (
+              <TaskCard
+                data={value}
+                key={index}
+                first={index == 0}
+                onDone={onDone}
+              />
+            );
+          })}
+        </ScrollView>
+      ) : (
+        <Text style={styles.empty}>Você não possui tarefas</Text>
+      )}
     </View>
   );
 }

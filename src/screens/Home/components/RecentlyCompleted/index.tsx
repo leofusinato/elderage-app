@@ -16,16 +16,16 @@ export function RecentlyCompleted({ data }: Props) {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Concluídas recentemente</Text>
-        <Button>
+        {/* <Button>
           <Text style={styles.seeAll}>Ver todas</Text>
-        </Button>
+        </Button> */}
       </View>
 
       {data.length > 0 ? (
         data.map((checkin) => <ListItem key={checkin.id} data={checkin} />)
       ) : (
         <Text style={styles.emptyList}>
-          Você ainda não completou nenhuma tarefa hoje.
+          Você ainda não completou nenhuma tarefa hoje
         </Text>
       )}
     </View>

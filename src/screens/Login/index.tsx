@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import {
-  View,
-  ScrollView,
-  Text,
-  Image,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+import { View, ScrollView, Text, Image, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import Input from "../../components/Inputs/Input";
@@ -31,9 +24,11 @@ export default function Login() {
     useNavigation<NativeStackNavigationProp<AppStackParamList, "Login">>();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
     if (email.length > 0 && password.length > 0) {
+      setLoading(true);
       try {
         const response = await api.post<AuthLoginResponse>("/login", {
           email: email.toLocaleLowerCase().trim(),
@@ -51,6 +46,7 @@ export default function Login() {
       } catch {
         Alert.alert("Ops!", "E-mail ou senha incorretos. Tente novamente");
       }
+      setLoading(false);
     }
   };
 
@@ -89,7 +85,10 @@ export default function Login() {
           onChangeText={(text) => setPassword(text)}
         />
 
-        <LoginButton onPress={async () => await handleLogin()} />
+        <LoginButton
+          loading={loading}
+          onPress={async () => await handleLogin()}
+        />
 
         <Button onPress={async () => await handleRecoverPassword()}>
           <Text style={styles.forgotPassword}>Esqueci minha senha</Text>

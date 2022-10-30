@@ -21,4 +21,10 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     color: theme.colors.secondary,
   },
+  empty: {
+    fontFamily: theme.fonts.medium,
+    fontSize: 14,
+    color: theme.colors.neutral300,
+    textAlign: "center",
+  },
 });

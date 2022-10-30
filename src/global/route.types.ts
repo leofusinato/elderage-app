@@ -8,6 +8,7 @@ export type AppStackParamList = {
   Home: undefined;
   Calendar: undefined;
   AddAged: undefined;
+  Profile: undefined;
   Login: undefined;
   RegisterName: undefined;
   RegisterAuth: {
@@ -99,6 +100,10 @@ export type CalendarNavigationProps = {
 
 export type AddAgedNavigationProps = {
   navigation: NativeStackNavigationProp<AppStackParamList, "AddAged">;
+};
+
+export type ProfileNavigationProps = {
+  navigation: NativeStackNavigationProp<AppStackParamList, "Profile">;
 };
 
 export type NewContactNavigationProps = {

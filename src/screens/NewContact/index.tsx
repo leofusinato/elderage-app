@@ -93,7 +93,7 @@ export function NewContact({ navigation, route }: NewContactNavigationProps) {
   return (
     <>
       <Header
-        title="Novo contato"
+        title={isEditing ? "Contato" : "Novo contato"}
         headerRight={isEditing ? <Delete /> : null}
       />
       <ScrollView contentContainerStyle={styles.container}>

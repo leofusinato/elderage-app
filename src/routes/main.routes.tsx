@@ -1,10 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { Ionicons } from "@expo/vector-icons";
-import { Octicons } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 import { Home } from "../screens/Home";
 import { Calendar } from "../screens/Calendar";
@@ -15,6 +12,7 @@ import { NewAged } from "../screens/NewAged";
 import NewAgedRoutes from "./newAged.routes";
 import { useNewAged } from "../contexts/NewAgedProvider";
 import { Notifications } from "../screens/Notifications";
+import { Profile } from "../screens/Profile";
 
 const MainStack = createBottomTabNavigator();
 
@@ -38,8 +36,8 @@ const MainRoutes: React.FC = () => {
                   focused ? styles.activeContainer : styles.inactiveContainer
                 }
               >
-                <Ionicons
-                  name="md-home-outline"
+                <Feather
+                  name="home"
                   size={24}
                   color={focused ? theme.colors.white : "#9656FE"}
                 />
@@ -60,7 +58,7 @@ const MainRoutes: React.FC = () => {
                   focused ? styles.activeContainer : styles.inactiveContainer
                 }
               >
-                <Octicons
+                <Feather
                   name="calendar"
                   size={24}
                   color={focused ? theme.colors.white : "#9656FE"}
@@ -90,7 +88,7 @@ const MainRoutes: React.FC = () => {
                   focused ? styles.activeContainer : styles.inactiveContainer
                 }
               >
-                <MaterialCommunityIcons
+                <Feather
                   name="plus"
                   size={24}
                   color={focused ? theme.colors.white : "#9656FE"}
@@ -112,8 +110,8 @@ const MainRoutes: React.FC = () => {
                   focused ? styles.activeContainer : styles.inactiveContainer
                 }
               >
-                <Ionicons
-                  name="notifications-outline"
+                <Feather
+                  name="bell"
                   size={24}
                   color={focused ? theme.colors.white : "#9656FE"}
                 />
@@ -124,7 +122,7 @@ const MainRoutes: React.FC = () => {
       />
       <MainStack.Screen
         name="Profile"
-        component={Home}
+        component={Profile}
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }) => {
@@ -134,7 +132,7 @@ const MainRoutes: React.FC = () => {
                   focused ? styles.activeContainer : styles.inactiveContainer
                 }
               >
-                <AntDesign
+                <Feather
                   name="user"
                   size={24}
                   color={focused ? theme.colors.white : "#9656FE"}
