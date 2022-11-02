@@ -100,7 +100,9 @@ export function Card({ data, done = false, onDone }: Props) {
             color={colors.time}
           />
           <Text style={[styles.hour, { color: colors.time }]}>
-            {formatTime(data.schedule)}
+            {data.medication.time_type === 1
+              ? data.remaining
+              : formatTime(data.schedule)}
           </Text>
         </View>
       </View>

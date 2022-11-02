@@ -3,9 +3,9 @@ import { Alert, ScrollView, Text, View } from "react-native";
 
 import { BackButton } from "../../components/BackButton";
 import Input from "../../components/Inputs/Input";
-import { Row } from "../../components/Row";
 import { Button } from "../../components/Button";
 
+import { useAuth } from "../../contexts/AuthProvider";
 import { SendInviteNavigationProps } from "../../global/route.types";
 import { api } from "../../services/api";
 import { theme } from "../../global/styles";
@@ -13,21 +13,26 @@ import { styles } from "./styles";
 
 export function SendInvite({ navigation, route }: SendInviteNavigationProps) {
   const [email, setEmail] = useState("");
+  const { user } = useAuth();
 
   const handleSendInvite = async () => {
-    try {
-      const response = await api.post("invite", {
-        aged_id: route.params.agedId,
-        guest_email: email.toLowerCase(),
-      });
-      if (response.status === 200) {
-        navigation.navigate("SuccessInvite");
-      }
-    } catch (err: any) {
-      if (err.response.status === 404) {
-        Alert.alert("Ops", "Não encontramos nenhum usuário com este e-mail.");
-      } else {
-        Alert.alert("Ops", "Erro ao enviar o convite.");
+    if (email.toLowerCase() === user?.email.toLowerCase()) {
+      Alert.alert("Ops", "O email do convite não pode ser o mesmo que o seu.");
+    } else {
+      try {
+        const response = await api.post("invite", {
+          aged_id: route.params.agedId,
+          guest_email: email.toLowerCase(),
+        });
+        if (response.status === 200) {
+          navigation.navigate("SuccessInvite");
+        }
+      } catch (err: any) {
+        if (err.response.status === 404) {
+          Alert.alert("Ops", "Não encontramos nenhum usuário com este e-mail.");
+        } else {
+          Alert.alert("Ops", "Erro ao enviar o convite.");
+        }
       }
     }
   };
@@ -36,10 +41,9 @@ export function SendInvite({ navigation, route }: SendInviteNavigationProps) {
 
   return (
     <View style={styles.container}>
-      <Row style={styles.header}>
-        <BackButton />
-        <Text style={styles.back}>Voltar</Text>
-      </Row>
+      <View style={styles.header}>
+        <BackButton description="Voltar" />
+      </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.email}>Informe o e-mail</Text>
         <Text style={styles.description}>

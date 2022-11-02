@@ -1,19 +1,31 @@
-import { Feather } from "@expo/vector-icons";
 import React from "react";
-import { ScrollView, StatusBar, Text, View } from "react-native";
+import { Feather } from "@expo/vector-icons";
+import { Alert, ScrollView, StatusBar, Text, View } from "react-native";
 import { Button } from "../../components/Button";
 
+import * as localStorage from "../../services/auth.storage";
 import { useAuth } from "../../contexts/AuthProvider";
 import { theme } from "../../global/styles";
-import * as localStorage from "../../services/auth.storage";
 import { styles } from "./styles";
 
 export function Profile() {
   const { setUser, user } = useAuth();
 
   const handleSignOut = async () => {
-    await localStorage.clear();
-    setUser(null);
+    Alert.alert(
+      "Confirmação",
+      "Você tem certeza que deseja sair da sua conta?",
+      [
+        { text: "Cancelar" },
+        {
+          text: "Confirmar",
+          onPress: async () => {
+            await localStorage.clear();
+            setUser(null);
+          },
+        },
+      ]
+    );
   };
 
   return (

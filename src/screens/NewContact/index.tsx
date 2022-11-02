@@ -2,13 +2,13 @@ import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, ScrollView, Alert } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Header } from "../../components/Header";
+import { Button } from "../../components/Button";
 import Input from "../../components/Inputs/Input";
 
 import { NewContactNavigationProps } from "../../global/route.types";
 import { theme } from "../../global/styles";
 import { api } from "../../services/api";
 import { styles } from "./styles";
-import { Button } from "../../components/Button";
 
 export function NewContact({ navigation, route }: NewContactNavigationProps) {
   const [name, setName] = useState("");

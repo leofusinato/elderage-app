@@ -9,4 +9,10 @@ export const styles = StyleSheet.create({
   content: {
     paddingHorizontal: 16,
   },
+  empty: {
+    fontFamily: theme.fonts.medium,
+    fontSize: 15,
+    color: theme.colors.neutral500,
+    textAlign: "center",
+  },
 });

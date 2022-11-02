@@ -10,11 +10,11 @@ export const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
     backgroundColor: theme.colors.white,
-    paddinTop: getStatusBarHeight(),
-    paddingBottom: getBottomSpace() + 90,
+    paddingTop: getStatusBarHeight(),
+    paddingBottom: getBottomSpace() + 40,
   },
   header: {
-    marginTop: 60,
+    marginTop: 32,
   },
   back: {
     marginLeft: 8,

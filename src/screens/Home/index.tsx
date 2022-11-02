@@ -2,7 +2,7 @@ import { useFocusEffect } from "@react-navigation/native";
 // import { StatusBar } from "expo-status-bar";
 import React, { useCallback, useEffect, useState } from "react";
 
-import { ScrollView, StatusBar } from "react-native";
+import { RefreshControl, ScrollView, StatusBar } from "react-native";
 import { LoadingContainer } from "../../components/LoadingContainer";
 import { AgedsList } from "./components/AgedsList";
 import { Header } from "./components/Header";
@@ -25,26 +25,35 @@ type HomeDataProps = {
 export function Home() {
   const [data, setData] = useState<HomeDataProps | null>(null);
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
       await fetch();
+      setLoading(false);
     })();
   }, []);
 
   useFocusEffect(
     useCallback(() => {
+      setLoading(true);
       fetch();
+      setLoading(false);
     }, [])
   );
 
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetch();
+    setRefreshing(false);
+  };
+
   const fetch = async () => {
-    setLoading(true);
     const response = await api.get("/home");
     if (response.status === 200) {
       setData(response.data);
     }
-    setLoading(false);
   };
 
   if (!data) {
@@ -54,7 +63,13 @@ export function Home() {
   return (
     <>
       <StatusBar backgroundColor={theme.colors.white} />
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.container}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         <LoadingContainer visible={loading}>
           <Header />
           <NextTasks data={data.nextTasks} onDone={async () => await fetch()} />

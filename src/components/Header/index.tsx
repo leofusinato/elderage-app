@@ -1,13 +1,13 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";
 
 import { Row } from "../Row";
-import { useNavigation } from "@react-navigation/native";
+import { Button } from "../Button";
 
 import { theme } from "../../global/styles";
 import { styles } from "./styles";
-import { Button } from "../Button";
 
 type Props = {
   title: string;
@@ -26,16 +26,6 @@ export function Header({ title, headerRight }: Props) {
             size={28}
             color={theme.colors.neutral700}
           />
-          <Text
-            style={[
-              styles.backText,
-              {
-                color: theme.colors.neutral700,
-              },
-            ]}
-          >
-            Voltar
-          </Text>
         </Row>
       </Button>
       <Text style={styles.title}>{title}</Text>
@@ -46,7 +36,6 @@ export function Header({ title, headerRight }: Props) {
             size={28}
             color={theme.colors.neutral300}
           />
-          <Text style={styles.backText}>Voltar</Text>
         </Row>
       )}
     </View>

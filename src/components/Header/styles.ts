@@ -1,11 +1,13 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import { theme } from "../../global/styles";
+
+const paddingTop = Platform.OS === "android" ? 0 : 16;
 
 export const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    paddingTop: getStatusBarHeight() + 16,
+    paddingTop: getStatusBarHeight() + paddingTop,
     paddingBottom: 16,
     alignItems: "center",
     justifyContent: "space-between",

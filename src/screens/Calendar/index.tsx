@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { View, ScrollView, Alert } from "react-native";
+import { View, ScrollView, Alert, Text } from "react-native";
 import { Loading } from "../../components/Loading";
 import { TaskProps } from "../../global/models/task";
 import { api } from "../../services/api";
@@ -61,6 +61,9 @@ export function Calendar() {
           {tasks?.done.map((task, index) => (
             <Card key={index} done data={task} />
           ))}
+          {tasks && tasks?.pending.length === 0 && tasks?.done.length === 0 && (
+            <Text style={styles.empty}>Nenhuma tarefa para esta data</Text>
+          )}
         </View>
       </Loading>
     </ScrollView>
