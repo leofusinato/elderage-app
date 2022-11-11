@@ -1,12 +1,13 @@
 import React from "react";
 import { Feather } from "@expo/vector-icons";
-import { Alert, ScrollView, StatusBar, Text, View } from "react-native";
+import { Alert, ScrollView, Text, View } from "react-native";
 import { Button } from "../../components/Button";
 
 import * as localStorage from "../../services/auth.storage";
 import { useAuth } from "../../contexts/AuthProvider";
 import { theme } from "../../global/styles";
 import { styles } from "./styles";
+import { StatusBar } from "expo-status-bar";
 
 export function Profile() {
   const { setUser, user } = useAuth();
@@ -30,7 +31,7 @@ export function Profile() {
 
   return (
     <>
-      <StatusBar barStyle={"dark-content"} />
+      <StatusBar style={"dark"} translucent={false} />
       <View style={styles.container}>
         <ScrollView>
           <View style={styles.center}>

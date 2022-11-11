@@ -1,8 +1,8 @@
 import { useFocusEffect } from "@react-navigation/native";
-// import { StatusBar } from "expo-status-bar";
+import { StatusBar } from "expo-status-bar";
 import React, { useCallback, useEffect, useState } from "react";
 
-import { RefreshControl, ScrollView, StatusBar } from "react-native";
+import { RefreshControl, ScrollView } from "react-native";
 import { LoadingContainer } from "../../components/LoadingContainer";
 import { AgedsList } from "./components/AgedsList";
 import { Header } from "./components/Header";
@@ -62,7 +62,11 @@ export function Home() {
 
   return (
     <>
-      <StatusBar backgroundColor={theme.colors.white} />
+      <StatusBar
+        style="dark"
+        translucent={false}
+        backgroundColor={theme.colors.white}
+      />
       <ScrollView
         style={styles.container}
         showsVerticalScrollIndicator={false}

@@ -7,6 +7,7 @@ import { View, Text, Alert } from "react-native";
 import { Button } from "../../components/Button";
 import { useNewAged } from "../../contexts/NewAgedProvider";
 import { AppStackParamList } from "../../global/route.types";
+import { theme } from "../../global/styles";
 import { api } from "../../services/api";
 import { Address } from "./components/Address";
 import { Contact } from "./components/Contact";
@@ -91,7 +92,7 @@ export function NewAged() {
 
   return (
     <>
-      <StatusBar hidden />
+      <StatusBar style="dark" backgroundColor={theme.colors.white} />
       <View style={styles.container}>
         <Header onBack={handlePreviosuStep} />
         {screens[screenStep]}

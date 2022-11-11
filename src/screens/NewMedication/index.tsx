@@ -13,6 +13,7 @@ import { theme } from "../../global/styles";
 import { api } from "../../services/api";
 import { styles } from "./styles";
 import { Button } from "../../components/Button";
+import { StatusBar } from "expo-status-bar";
 
 const timeTypes = ["Quantidade diária", "Horário"];
 
@@ -114,7 +115,6 @@ export function NewMedication({
         });
       }
       body.time_type = body.time_type === 1 ? 2 : 1;
-      console.log(body);
       let response;
       if (isEditing) {
         response = await api.put(
@@ -183,6 +183,7 @@ export function NewMedication({
 
   return (
     <>
+      <StatusBar style="dark" backgroundColor={theme.colors.white} />
       <Header
         title="Novo medicamento"
         headerRight={isEditing ? <Delete /> : null}

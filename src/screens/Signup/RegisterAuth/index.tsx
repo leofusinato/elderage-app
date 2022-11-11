@@ -50,7 +50,6 @@ export function RegisterAuth({ route }: RegisterAuthNavigationProps) {
         await api.post("/users", { name, email, password });
         navigation.navigate("Login");
       } catch (err) {
-        console.log(JSON.stringify(err, null, 2));
         Alert.alert("Ops!", "Erro ao cadastrar o usuário");
       }
     } else {

@@ -3,8 +3,9 @@ import { RefreshTokenResponse } from "../global/models/auth";
 import { getAuth, setAuth } from "./auth.storage";
 
 export const api = axios.create({
-  baseURL: "http://192.168.2.3:3333",
-  // baseURL: "https://elderage-api.herokuapp.com",
+  // baseURL: "http://10.60.89.100:3333",
+  // baseURL: "http://192.168.2.3:3333",
+  baseURL: "https://elderage-api.herokuapp.com",
 });
 
 export const refreshTokenSignIn = async (): Promise<void> => {
