@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -10,7 +10,6 @@ import { TaskProps } from "../../../../global/models/task";
 import { formatTime } from "../../../../utils/date";
 import { theme } from "../../../../global/styles";
 import { styles } from "./styles";
-import { Button } from "../../../../components/Button";
 
 type Props = {
   data: TaskProps;
@@ -66,7 +65,7 @@ export function Card({ data, done = false, onDone }: Props) {
   }, [done]);
 
   return (
-    <Button
+    <View
       style={[
         styles.container,
         {
@@ -74,7 +73,6 @@ export function Card({ data, done = false, onDone }: Props) {
           borderColor: colors.border,
         },
       ]}
-      activeOpacity={1}
     >
       <View style={styles.header}>
         <View style={styles.left}>
@@ -140,6 +138,6 @@ export function Card({ data, done = false, onDone }: Props) {
           <Feather name="check" size={20} color={theme.colors.white} />
         )}
       </View>
-    </Button>
+    </View>
   );
 }

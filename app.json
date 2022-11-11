@@ -2,7 +2,7 @@
   "expo": {
     "name": "Elderage",
     "slug": "Elderage",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "userInterfaceStyle": "automatic",
     "assetBundlePatterns": [
       "**/*"
@@ -12,7 +12,17 @@
     },
     "android": {
       "package": "br.com.elderage",
-      "googleServicesFile": "./android/app/google-services.json"
+      "versionCode": 7,
+      "blockedPermissions": [
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "49b4bc6d-69cf-4110-87ce-5f4245e26ab1"
+      }
     }
   }
 }

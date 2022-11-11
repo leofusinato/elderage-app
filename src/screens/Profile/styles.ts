@@ -3,8 +3,6 @@ import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
 import { theme } from "../../global/styles";
 
-const paddingTop = Platform.OS === "android" ? 0 : 32;
-
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -24,7 +22,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1,
     backgroundColor: theme.colors.white,
-    paddingTop: getStatusBarHeight() + paddingTop,
+    paddingTop: getStatusBarHeight() + 32,
     paddingBottom: 32,
   },
   image: {
