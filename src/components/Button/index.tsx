@@ -13,7 +13,11 @@ type Props = {
 
 export function Button({ loading, children, ...rest }: Props) {
   return (
-    <TouchableOpacity {...rest} activeOpacity={0.5} disabled={loading}>
+    <TouchableOpacity
+      {...rest}
+      activeOpacity={0.5}
+      disabled={loading || rest.disabled}
+    >
       {loading ? <ActivityIndicator color={theme.colors.white} /> : children}
     </TouchableOpacity>
   );

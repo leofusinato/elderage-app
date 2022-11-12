@@ -39,6 +39,7 @@ export function NewMedication({
   const [schedulesList, setSchedulesList] = useState<Map<number, string>>(
     new Map([[0, "00:00:00"]])
   );
+  const [loading, setLoading] = useState(false);
 
   const isEditing = route.params.medication != null;
 
@@ -46,7 +47,6 @@ export function NewMedication({
     if (isEditing) {
       const { description, details, time_type, time_description, schedules } =
         route.params.medication;
-
       let body = {
         description,
         details,
@@ -109,6 +109,7 @@ export function NewMedication({
 
   const handleSubmit = async () => {
     try {
+      setLoading(true);
       if (body.time_type == 1) {
         schedulesList.forEach((value) => {
           body.schedules.push(value);
@@ -135,6 +136,8 @@ export function NewMedication({
         "Ops!",
         `Erro ao ${isEditing ? "atualizar" : "cadastrar"} o medicamento.`
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -185,7 +188,7 @@ export function NewMedication({
     <>
       <StatusBar style="dark" backgroundColor={theme.colors.white} />
       <Header
-        title="Novo medicamento"
+        title={isEditing ? "Atualizar medicamento" : "Novo medicamento"}
         headerRight={isEditing ? <Delete /> : null}
       />
       <ScrollView contentContainerStyle={styles.container}>
@@ -216,7 +219,7 @@ export function NewMedication({
           }}
         >
           <Selector
-            defaultValue={body.time_type ? timeTypes[body.time_type] : null}
+            defaultValue={timeTypes[body.time_type as number]}
             onSelect={(_, index) => {
               if (index != 1) {
                 setSchedulesList((prev) => {
@@ -259,6 +262,7 @@ export function NewMedication({
             validForm ? styles.activeButton : styles.disabledButton,
           ]}
           disabled={!validForm}
+          loading={loading}
           onPress={async () => handleSubmit()}
         >
           <Text style={styles.next}>

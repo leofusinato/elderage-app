@@ -64,7 +64,7 @@ export function Home() {
     <>
       <StatusBar
         style="dark"
-        translucent={false}
+        // translucent={false}
         backgroundColor={theme.colors.white}
       />
       <ScrollView

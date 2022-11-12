@@ -1,5 +1,6 @@
+import { useFocusEffect } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { View, ScrollView, Alert, Text } from "react-native";
 import { Loading } from "../../components/Loading";
@@ -41,6 +42,12 @@ export function Calendar() {
     setSelectedDate(date);
     await getTasks(date);
   };
+
+  useFocusEffect(
+    useCallback(() => {
+      getTasks(selectedDate);
+    }, [])
+  );
 
   useEffect(() => {
     (async () => {
